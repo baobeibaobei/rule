@@ -251,78 +251,73 @@
             "tag": "🐸 手动切换",
             "type": "selector",
             "outbounds": [
-                "🐯 使用 虎云 要经常更新订阅",
-                "🐯 联系方式 admin@huyun.icu",
-                "🇸🇬 新加坡 1",
-                "🇸🇬 新加坡 1 [ IPv6 ]",
-                "🇸🇬 新加坡 2 [ 推荐 ]",
-                "🇸🇬 新加坡 2 [ 高速 ] [ IPv6 ]",
-                "🇸🇬 新加坡 3",
-                "🇸🇬 新加坡 3 [ IPv6 ]",
-                "🇯🇵 日本 1",
-                "🇯🇵 日本 1 [ IPv6 ]",
-                "🇯🇵 日本 2",
-                "🇯🇵 日本 2 [ 高速 ] [ IPv6 ]",
-                "🇯🇵 日本 3",
-                "🇯🇵 日本 3 [ IPv6 ]",
-                "🇭🇰 香港 1",
-                "🇭🇰 香港 1 [ IPv6 ]",
-                "🇭🇰 香港 2",
-                "🇭🇰 香港 2 [ IPv6 ]",
-                "🇹🇼 台湾",
-                "🇹🇼 台湾 [ IPv6 ]",
-                "🇩🇪 德国",
-                "🇩🇪 德国 [ IPv6 ]",
-                "🇺🇸 美国 1 [0.5x ]",
-                "🇺🇸 美国 1 [0.5x ] [ IPv6 ]",
-                "🇺🇸 美国 2 [0.5x ]",
-                "🇺🇸 美国 2 [0.5x ] [ IPv6 ]",
-                "🇺🇸 美国 1 [0.5x ] [ 海外专享 ]",
-                "🇺🇸 美国 2 [0.5x ] [ 海外专享 ]"
+                "{all}"
             ]
         },
         {
             "tag": "🇭🇰 香港节点",
             "type": "selector",
             "outbounds": [
-                "🇭🇰 香港 1",
-                "🇭🇰 香港 1 [ IPv6 ]",
-                "🇭🇰 香港 2",
-                "🇭🇰 香港 2 [ IPv6 ]"
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "🇭🇰|HK|hk|香港|港|HongKong"
+                    ]
+                }
             ]
         },
         {
             "tag": "🇯🇵 日本节点",
             "type": "selector",
             "outbounds": [
-                "🇯🇵 日本 1",
-                "🇯🇵 日本 1 [ IPv6 ]",
-                "🇯🇵 日本 2",
-                "🇯🇵 日本 2 [ 高速 ] [ IPv6 ]",
-                "🇯🇵 日本 3",
-                "🇯🇵 日本 3 [ IPv6 ]"
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "🇯🇵|JP|jp|日本|日|Japan"
+                    ]
+                }
             ]
         },
         {
             "tag": "🇺🇲 美国节点",
             "type": "selector",
             "outbounds": [
-                "🇺🇸 美国 1 [0.5x ]",
-                "🇺🇸 美国 1 [0.5x ] [ IPv6 ]",
-                "🇺🇸 美国 2 [0.5x ]",
-                "🇺🇸 美国 2 [0.5x ] [ IPv6 ]",
-                "🇺🇸 美国 1 [0.5x ] [ 海外专享 ]",
-                "🇺🇸 美国 2 [0.5x ] [ 海外专享 ]"
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "🇺🇸|US|us|美国|美|United States"
+                    ]
+                },
+                {
+                    "action": "exclude",
+                    "keywords": [
+                        "香港|港|HK|hk|HongKong"
+                    ]
+                }
             ]
         },
         {
             "tag": "🔯 香港自动",
             "type": "urltest",
             "outbounds": [
-                "🇭🇰 香港 1",
-                "🇭🇰 香港 1 [ IPv6 ]",
-                "🇭🇰 香港 2",
-                "🇭🇰 香港 2 [ IPv6 ]"
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "🇭🇰|HK|hk|香港|港|HongKong"
+                    ]
+                }
             ],
             "url": "http://www.gstatic.com/generate_204",
             "interval": "10m",
@@ -332,34 +327,15 @@
             "tag": "♻️ 自动选择",
             "type": "urltest",
             "outbounds": [
-                "🐯 使用 虎云 要经常更新订阅",
-                "🐯 联系方式 admin@huyun.icu",
-                "🇸🇬 新加坡 1",
-                "🇸🇬 新加坡 1 [ IPv6 ]",
-                "🇸🇬 新加坡 2 [ 推荐 ]",
-                "🇸🇬 新加坡 2 [ 高速 ] [ IPv6 ]",
-                "🇸🇬 新加坡 3",
-                "🇸🇬 新加坡 3 [ IPv6 ]",
-                "🇯🇵 日本 1",
-                "🇯🇵 日本 1 [ IPv6 ]",
-                "🇯🇵 日本 2",
-                "🇯🇵 日本 2 [ 高速 ] [ IPv6 ]",
-                "🇯🇵 日本 3",
-                "🇯🇵 日本 3 [ IPv6 ]",
-                "🇭🇰 香港 1",
-                "🇭🇰 香港 1 [ IPv6 ]",
-                "🇭🇰 香港 2",
-                "🇭🇰 香港 2 [ IPv6 ]",
-                "🇹🇼 台湾",
-                "🇹🇼 台湾 [ IPv6 ]",
-                "🇩🇪 德国",
-                "🇩🇪 德国 [ IPv6 ]",
-                "🇺🇸 美国 1 [0.5x ]",
-                "🇺🇸 美国 1 [0.5x ] [ IPv6 ]",
-                "🇺🇸 美国 2 [0.5x ]",
-                "🇺🇸 美国 2 [0.5x ] [ IPv6 ]",
-                "🇺🇸 美国 1 [0.5x ] [ 海外专享 ]",
-                "🇺🇸 美国 2 [0.5x ] [ 海外专享 ]"
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "exclude",
+                    "keywords": [
+                        "网站|地址|剩余|过期|时间|有效"
+                    ]
+                }
             ],
             "url": "http://www.gstatic.com/generate_204",
             "interval": "10m",
@@ -369,34 +345,7 @@
             "tag": "GLOBAL",
             "type": "selector",
             "outbounds": [
-                "🐯 使用 虎云 要经常更新订阅",
-                "🐯 联系方式 admin@huyun.icu",
-                "🇸🇬 新加坡 1",
-                "🇸🇬 新加坡 1 [ IPv6 ]",
-                "🇸🇬 新加坡 2 [ 推荐 ]",
-                "🇸🇬 新加坡 2 [ 高速 ] [ IPv6 ]",
-                "🇸🇬 新加坡 3",
-                "🇸🇬 新加坡 3 [ IPv6 ]",
-                "🇯🇵 日本 1",
-                "🇯🇵 日本 1 [ IPv6 ]",
-                "🇯🇵 日本 2",
-                "🇯🇵 日本 2 [ 高速 ] [ IPv6 ]",
-                "🇯🇵 日本 3",
-                "🇯🇵 日本 3 [ IPv6 ]",
-                "🇭🇰 香港 1",
-                "🇭🇰 香港 1 [ IPv6 ]",
-                "🇭🇰 香港 2",
-                "🇭🇰 香港 2 [ IPv6 ]",
-                "🇹🇼 台湾",
-                "🇹🇼 台湾 [ IPv6 ]",
-                "🇩🇪 德国",
-                "🇩🇪 德国 [ IPv6 ]",
-                "🇺🇸 美国 1 [0.5x ]",
-                "🇺🇸 美国 1 [0.5x ] [ IPv6 ]",
-                "🇺🇸 美国 2 [0.5x ]",
-                "🇺🇸 美国 2 [0.5x ] [ IPv6 ]",
-                "🇺🇸 美国 1 [0.5x ] [ 海外专享 ]",
-                "🇺🇸 美国 2 [0.5x ] [ 海外专享 ]"
+                "{all}"
             ]
         },
         {
@@ -406,302 +355,6 @@
         {
             "tag": "dns-out",
             "type": "dns"
-        },
-        {
-            "tag": "🐯 使用 虎云 要经常更新订阅",
-            "type": "trojan",
-            "server": "huyun-cdn.welcome1-huyun.z1x2c3v4.pro",
-            "server_port": 10001,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🐯 联系方式 admin@huyun.icu",
-            "type": "trojan",
-            "server": "huyun-cdn.welcome2-huyun.z1x2c3v4.pro",
-            "server_port": 10000,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇸🇬 新加坡 1",
-            "type": "trojan",
-            "server": "huyun-cdn.sg1.z1x2c3v4.pro",
-            "server_port": 10001,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": false,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇸🇬 新加坡 1 [ IPv6 ]",
-            "type": "trojan",
-            "server": "huyun-cdn6.sg1.huyun.icu",
-            "server_port": 10001,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇸🇬 新加坡 2 [ 推荐 ]",
-            "type": "trojan",
-            "server": "huyun-cdn.sg2.z1x2c3v4.pro",
-            "server_port": 10002,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇸🇬 新加坡 2 [ 高速 ] [ IPv6 ]",
-            "type": "trojan",
-            "server": "huyun-cdn6.sg2.huyun.icu",
-            "server_port": 10002,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇸🇬 新加坡 3",
-            "type": "trojan",
-            "server": "huyun-cdn.sg3.z1x2c3v4.pro",
-            "server_port": 10004,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇸🇬 新加坡 3 [ IPv6 ]",
-            "type": "trojan",
-            "server": "huyun-cdn6.sg3.huyun.icu",
-            "server_port": 10004,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇯🇵 日本 1",
-            "type": "trojan",
-            "server": "huyun-cdn.jp1.z1x2c3v4.pro",
-            "server_port": 26000,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇯🇵 日本 1 [ IPv6 ]",
-            "type": "trojan",
-            "server": "huyun-cdn6.jp1.huyun.icu",
-            "server_port": 26000,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇯🇵 日本 2",
-            "type": "trojan",
-            "server": "huyun-cdn.jp2.z1x2c3v4.pro",
-            "server_port": 10000,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇯🇵 日本 2 [ 高速 ] [ IPv6 ]",
-            "type": "trojan",
-            "server": "huyun-cdn6.jp2.huyun.icu",
-            "server_port": 10000,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇯🇵 日本 3",
-            "type": "trojan",
-            "server": "huyun-cdn.jp3.z1x2c3v4.pro",
-            "server_port": 10003,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇯🇵 日本 3 [ IPv6 ]",
-            "type": "trojan",
-            "server": "huyun-cdn6.jp3.huyun.icu",
-            "server_port": 10003,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇭🇰 香港 1",
-            "type": "trojan",
-            "server": "huyun-cdn.hk1.z1x2c3v4.pro",
-            "server_port": 25554,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇭🇰 香港 1 [ IPv6 ]",
-            "type": "trojan",
-            "server": "huyun-cdn6.hk1.huyun.icu",
-            "server_port": 25554,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇭🇰 香港 2",
-            "type": "shadowsocks",
-            "server": "huyun-cdn.hk2.z1x2c3v4.pro",
-            "server_port": 25555,
-            "method": "chacha20-ietf-poly1305",
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5"
-        },
-        {
-            "tag": "🇭🇰 香港 2 [ IPv6 ]",
-            "type": "shadowsocks",
-            "server": "huyun-cdn6.hk2.huyun.icu",
-            "server_port": 25555,
-            "method": "chacha20-ietf-poly1305",
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5"
-        },
-        {
-            "tag": "🇹🇼 台湾",
-            "type": "trojan",
-            "server": "huyun-cdn.formosa.z1x2c3v4.pro",
-            "server_port": 26100,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇹🇼 台湾 [ IPv6 ]",
-            "type": "trojan",
-            "server": "huyun-cdn6.formosa.huyun.icu",
-            "server_port": 26100,
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5",
-            "tls": {
-                "enabled": true,
-                "insecure": true,
-                "server_name": "dl.hu-yunpan.top"
-            }
-        },
-        {
-            "tag": "🇩🇪 德国",
-            "type": "shadowsocks",
-            "server": "huyun-cdn.ge.z1x2c3v4.pro",
-            "server_port": 26103,
-            "method": "chacha20-ietf-poly1305",
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5"
-        },
-        {
-            "tag": "🇩🇪 德国 [ IPv6 ]",
-            "type": "shadowsocks",
-            "server": "huyun-cdn6.ge1.huyun.icu",
-            "server_port": 26103,
-            "method": "chacha20-ietf-poly1305",
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5"
-        },
-        {
-            "tag": "🇺🇸 美国 1 [0.5x ]",
-            "type": "shadowsocks",
-            "server": "huyun-cdn.us1.z1x2c3v4.pro",
-            "server_port": 25556,
-            "method": "aes-128-gcm",
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5"
-        },
-        {
-            "tag": "🇺🇸 美国 1 [0.5x ] [ IPv6 ]",
-            "type": "shadowsocks",
-            "server": "multicast-3.huyun.top",
-            "server_port": 10001,
-            "method": "aes-128-gcm",
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5"
-        },
-        {
-            "tag": "🇺🇸 美国 2 [0.5x ]",
-            "type": "shadowsocks",
-            "server": "huyun-cdn.us2.z1x2c3v4.pro",
-            "server_port": 25557,
-            "method": "aes-128-gcm",
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5"
-        },
-        {
-            "tag": "🇺🇸 美国 2 [0.5x ] [ IPv6 ]",
-            "type": "shadowsocks",
-            "server": "huyun-cdn6.us2.huyun.icu",
-            "server_port": 25557,
-            "method": "aes-128-gcm",
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5"
-        },
-        {
-            "tag": "🇺🇸 美国 1 [0.5x ] [ 海外专享 ]",
-            "type": "shadowsocks",
-            "server": "huyun-cdn.us1-global.huyun.icu",
-            "server_port": 25556,
-            "method": "aes-128-gcm",
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5"
-        },
-        {
-            "tag": "🇺🇸 美国 2 [0.5x ] [ 海外专享 ]",
-            "type": "shadowsocks",
-            "server": "huyun-cdn.us2-global.huyun.icu",
-            "server_port": 25557,
-            "method": "aes-128-gcm",
-            "password": "26edcdab-23fd-4249-889a-626b2f2305d5"
         }
     ],
     "route": {
