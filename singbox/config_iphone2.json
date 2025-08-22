@@ -32,10 +32,7 @@
         {
             "type": "tun",
             "domain_strategy": "prefer_ipv4",
-            "address": [
-                "172.19.0.1/30",
-                "2001:0470:f9da:fdfa::1/64"
-            ]，
+            "address": ["172.19.0.1/30","2001:0470:f9da:fdfa::1/64"]，
             "mtu": 9000,
             "auto_route": true
         }
