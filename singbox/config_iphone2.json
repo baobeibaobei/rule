@@ -54,7 +54,7 @@
                 "rule_set": "geosite-geolocation-!cn",
                 "server": "proxyDns"
             }
-        ]，
+        ],
         "final": "proxyDns",
         "strategy": "prefer_ipv4"
     },
@@ -63,9 +63,9 @@
             "type": "tun",
             "domain_strategy": "prefer_ipv4",
             "address": [
-                "172.19.0.1/30"，
+                "172.19.0.1/30",
                 "2001:0470:f9da:fdfa::1/64"
-            ]，
+            ],
             "mtu": 9000,
             "auto_route": true
         }
@@ -75,33 +75,21 @@
             "tag": "🚀 节点选择",
             "type": "selector",
             "outbounds": [
-                "♻️ 自动选择"，
-                "🔯 🇭🇰 香港自动",
-                "🔯 🇯🇵 日本自动"，
-                "🔯 🇺🇲 美国自动"，
-                "🔯 🇸🇬 新加坡自动"，
-                "🔯 🇹🇼 台湾自动",
-                "🔯 🇰🇷 韩国自动"，
-                "🔯 🇨🇦 加拿大自动"，
-                "🔯 🇬🇧 英国自动"，
-                "🇭🇰 香港节点"，
+                "🔯 香港自动",
+                "🇭🇰 香港节点",
                 "🇯🇵 日本节点",
-                "🇺🇲 美国节点"，
-                "🇸🇬 新加坡节点"，
-                "🇹🇼 台湾节点",
-                "🇰🇷 韩国节点"，
-                "🇨🇦 加拿大节点"，
-                "🇬🇧 英国节点",
-                "🐸 手动切换"，
+                "🇺🇲 美国节点",
+                "🐸 手动切换",
+                "♻️ 自动选择",
                 "🎯 全球直连"
             ]
-        }，
+        },
         {
             "tag": "♻️ 自动选择",
             "type": "urltest",
             "outbounds": [
                 "{all}"
-            ]，
+            ],
             "filter": [
                 {
                     "action": "exclude",
@@ -115,85 +103,12 @@
             "tolerance": 50
         },
         {
-            "tag": "🇭🇰 香港节点",
-            "type": "selector",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "🇭🇰|HK|hk|香港|港|HongKong"
-                    ]
-                }
-            ]
-        }，
+            "tag": "🎯 全球直连",
+            "type": "direct"
+        },
         {
-            "tag": "🔯 🇭🇰 香港自动",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "🇭🇰|HK|hk|香港|港|HongKong"
-                    ]
-                }
-            ]，
-            "url": "http://www.gstatic.com/generate_204",
-            "interval": "10m",
-            "tolerance": 50
-        }，
-        {
-            "tag": "🇯🇵 日本节点",
-            "type": "selector",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "🇯🇵|JP|jp|日本|日|Japan"
-                    ]
-                }
-            ]
-        }，
-        {
-            "tag": "🔯 🇯🇵 日本自动",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "🇯🇵|JP|jp|日本|日|Japan"
-                    ]
-                }
-            ]，
-            "url": "http://www.gstatic.com/generate_204",
-            "interval": "10m",
-            "tolerance": 50
-        }，
-        {
-            "tag": "🇺🇲 美国节点",
-            "type": "selector",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "🇺🇸|US|us|美国|美|United States"
-                    ]
-                }
-            ]
+            "tag": "dns-out",
+            "type": "dns"
         },
         {
             "tag": "🔯 🇺🇲 美国自动",
@@ -205,7 +120,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "🇺🇸|US|us|美国|美|United States"
+                        "🇺🇲 美国"
                     ]
                 }
             ],
@@ -260,13 +175,13 @@
                     ]
                 }
             ]
-        }，
+        },
         {
             "tag": "🔯 🇹🇼 台湾自动",
             "type": "urltest",
             "outbounds": [
                 "{all}"
-            ]，
+            ],
             "filter": [
                 {
                     "action": "include",
@@ -274,7 +189,7 @@
                         "🇹🇼|TW|tw|台湾|台|Taiwan"
                     ]
                 }
-            ]，
+            ],
             "url": "http://www.gstatic.com/generate_204",
             "interval": "10m",
             "tolerance": 50
@@ -284,7 +199,7 @@
             "type": "selector",
             "outbounds": [
                 "{all}"
-            ]，
+            ],
             "filter": [
                 {
                     "action": "include",
@@ -293,13 +208,13 @@
                     ]
                 }
             ]
-        }，
+        },
         {
             "tag": "🔯 🇰🇷 韩国自动",
             "type": "urltest",
             "outbounds": [
                 "{all}"
-            ]，
+            ],
             "filter": [
                 {
                     "action": "include",
@@ -307,17 +222,17 @@
                         "🇰🇷|KR|kr|韩国|韓|Korea"
                     ]
                 }
-            ]，
+            ],
             "url": "http://www.gstatic.com/generate_204",
             "interval": "10m",
             "tolerance": 50
-        }，
+        },
         {
             "tag": "🇨🇦 加拿大节点",
             "type": "selector",
             "outbounds": [
                 "{all}"
-            ]，
+            ],
             "filter": [
                 {
                     "action": "include",
@@ -326,13 +241,13 @@
                     ]
                 }
             ]
-        }，
+        },
         {
             "tag": "🔯 🇨🇦 加拿大自动",
             "type": "urltest",
             "outbounds": [
                 "{all}"
-            ]，
+            ],
             "filter": [
                 {
                     "action": "include",
@@ -340,17 +255,17 @@
                         "🇨🇦|CA|ca|加拿大|Canada"
                     ]
                 }
-            ]，
+            ],
             "url": "http://www.gstatic.com/generate_204",
             "interval": "10m",
             "tolerance": 50
-        }，
+        },
         {
             "tag": "🇬🇧 英国节点",
             "type": "selector",
             "outbounds": [
                 "{all}"
-            ]，
+            ],
             "filter": [
                 {
                     "action": "include",
@@ -359,13 +274,13 @@
                     ]
                 }
             ]
-        }，
+        },
         {
             "tag": "🔯 🇬🇧 英国自动",
             "type": "urltest",
             "outbounds": [
                 "{all}"
-            ]，
+            ],
             "filter": [
                 {
                     "action": "include",
@@ -373,25 +288,16 @@
                         "🇬🇧|GB|gb|英国|UK|United Kingdom"
                     ]
                 }
-            ]，
+            ],
             "url": "http://www.gstatic.com/generate_204",
             "interval": "10m",
             "tolerance": 50
-        }，
-        {
-            "tag": "🎯 全球直连",
-            "type": "direct"
-        },
-        {
-            "tag": "dns-out",
-            "type": "dns"
-        }，
-        {
-            "tag": "🐸 手动切换",
-            "type": "selector",
-            "outbounds": [
-                "{all}"
-            ]
         }
-    ]
+    ],
+    "route": {
+        "auto_detect_interface": true,
+        "final": "🐠 漏网之鱼",
+        "rules": [],
+        "rule_set": []
+    }
 }
