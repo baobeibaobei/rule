@@ -128,7 +128,7 @@
                     ]
                 }
             ]
-        },
+        }，
         {
             "tag": "🔯 🇭🇰 香港自动",
             "type": "urltest",
@@ -142,11 +142,11 @@
                         "🇭🇰|HK|hk|香港|港|HongKong"
                     ]
                 }
-            ],
+            ]，
             "url": "http://www.gstatic.com/generate_204",
             "interval": "10m",
             "tolerance": 50
-        },
+        }，
         {
             "tag": "🇯🇵 日本节点",
             "type": "selector",
@@ -161,7 +161,7 @@
                     ]
                 }
             ]
-        },
+        }，
         {
             "tag": "🔯 🇯🇵 日本自动",
             "type": "urltest",
@@ -175,11 +175,11 @@
                         "🇯🇵|JP|jp|日本|日|Japan"
                     ]
                 }
-            ],
+            ]，
             "url": "http://www.gstatic.com/generate_204",
             "interval": "10m",
             "tolerance": 50
-        },
+        }，
         {
             "tag": "🇺🇲 美国节点",
             "type": "selector",
@@ -284,7 +284,7 @@
             "type": "selector",
             "outbounds": [
                 "{all}"
-            ],
+            ]，
             "filter": [
                 {
                     "action": "include",
@@ -311,13 +311,13 @@
             "url": "http://www.gstatic.com/generate_204",
             "interval": "10m",
             "tolerance": 50
-        },
+        }，
         {
             "tag": "🇨🇦 加拿大节点",
             "type": "selector",
             "outbounds": [
                 "{all}"
-            ],
+            ]，
             "filter": [
                 {
                     "action": "include",
@@ -326,13 +326,13 @@
                     ]
                 }
             ]
-        },
+        }，
         {
             "tag": "🔯 🇨🇦 加拿大自动",
             "type": "urltest",
             "outbounds": [
                 "{all}"
-            ],
+            ]，
             "filter": [
                 {
                     "action": "include",
