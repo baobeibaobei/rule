@@ -33,7 +33,6 @@
             "auto_route": true,
             "stack": "system",
             "sniff": true
-            // ← 删掉 sniff_override，1.11.4 完美认
         }
     ],
     "outbounds": [
