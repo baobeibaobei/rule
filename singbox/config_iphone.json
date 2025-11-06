@@ -68,7 +68,6 @@
   
   "route": {
       "auto_detect_interface": true,
-      "domain_strategy": "prefer_ipv4",
       "final": "🐠 漏网之鱼",
   "rules": [
     { "type": "logical", "mode": "or", "rules": [{ "port": 53 }, { "protocol": "dns" }], "outbound": "dns-out" },
