@@ -1,3 +1,4 @@
+
 {
   "log": {
     "disabled": false,
@@ -13,11 +14,12 @@
   
   "dns": {
     "servers": [
-      {"tag": "proxyDns", "address": "tls://1.1.1.1", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"},
+      {"tag": "proxyDns", "address": "https://1.1.1.1/dns-query", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🚀 节点选择"},
       {"tag": "localDns", "address": "223.5.5.5", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"},
       {"tag": "defaultDns", "address": "223.5.5.5", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"}
     ],
     "rules": [
+      { "outbound": "any", "server": "defaultDns", "disable_cache": true },
       { "clash_mode": "direct", "server": "localDns" },
       { "clash_mode": "global", "server": "proxyDns" },
       { "rule_set": "geosite-cn", "server": "localDns" },
