@@ -1,4 +1,5 @@
-{
+
+      {
   "log": {
     "disabled": false,
     "level": "debug",
@@ -447,7 +448,7 @@
             "tag": "dns-out",
             "type": "dns"
         }
-],
+]，
 "route": {
       "auto_detect_interface": true,
       "final": "🐠 漏网之鱼",
