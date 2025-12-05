@@ -40,7 +40,7 @@
         "detour": "DIRECT"
     },
   
- "inbounds": [
+    "inbounds": [
         {
             "type": "mixed",
             "tag": "mixed-in",
