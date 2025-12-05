@@ -1,44 +1,52 @@
 {
-  "log": {
-    "disabled": false,
-    "level": "info",
-    "timestamp": true
-  },
-  
-  "experimental": {
-  "cache_file": {
-    "enabled": true
-    }
-  },
-  
-  "dns": {
-    "servers": [
-      {"tag": "proxyDns", "address": "https://1.1.1.1/dns-query", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🚀 节点选择"},
-      {"tag": "localDns", "address": "223.5.5.5", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"},
-      {"tag": "defaultDns", "address": "223.5.5.5", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"}
+    "log": {
+        "disabled": false,
+        "level": "info",
+        "timestamp": true
+    },
+    "dns": {
+        "servers": [
+            {"tag": "dns_proxy","address": "tls://1.1.1.1","address_resolver": "dns_resolver"},
+            {"tag": "dns_direct","address": "h3://dns.alidns.com/dns-query","address_resolver": "dns_resolver","detour": "DIRECT"},
+            {"tag": "dns_fakeip","address": "fakeip"},
+            {"tag": "dns_resolver","address": "223.5.5.5","detour": "DIRECT"},
+            {"tag": "block","address": "rcode://success"}
+        ]，
+        "rules": [
+            {"outbound": ["any"]，"server": "dns_resolver"}，
+            {"geosite": ["category-ads-all"]，"server": "dns_block"，"disable_cache": true}，
+            {"geosite": ["geolocation-!cn"]，"query_type": ["A"，"AAAA"]，"server": "dns_fakeip"}，
+            {"geosite": ["geolocation-!cn"]，"server": "dns_proxy"}
+        ]，
+        "final": "dns_direct"，
+        "independent_cache": true，
+        "fakeip": {"enabled": true，"inet6_range": "fc00::/18"，"inet4_range": "198.18.0.0/15"}
+    }，
+    "ntp": {
+        "enabled": true,
+        "server": "time.apple.com",
+        "server_port": 123,
+        "interval": "30m",
+        "detour": "DIRECT"
+    }，
+    "inbounds": [
+        {
+            "type": "mixed",
+            "tag": "mixed-in",
+            "listen": "0.0.0.0",
+            "listen_port": 2080
+        }，
+        {
+            "type": "tun",
+            "tag": "tun-in",
+            "inet4_address": "172.19.0.1/30",
+            "inet6_address": "fdfe:dcba:9876::1/126",
+            "auto_route": true,
+            "strict_route": true,
+            "stack": "mixed",
+            "sniff": true
+        }
     ],
-    "rules": [
-      { "outbound": "any", "server": "defaultDns", "disable_cache": true },
-      { "clash_mode": "direct", "server": "localDns" },
-      { "clash_mode": "global", "server": "proxyDns" },
-      { "rule_set": "geosite-cn", "server": "localDns" },
-      { "rule_set": "geosite-geolocation-!cn", "server": "proxyDns" }
-    ],
-    "final": "localDns",
-    "strategy": "prefer_ipv4"
-  },
-
-"inbounds": [
-  {
-    "type": "tun",
-            "address": [
-                "172.30.0.1/30",
-                "fdfe:dcba:9876::1/126"
-            ],
-            "mtu": 9000,
-            "auto_route": true
-  }
-],
 
 "outbounds": [
   { "tag": "🚀 节点选择", "type": "selector", "outbounds": ["🔯 香港自动", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇺🇲 美国节点", "🐸 手动切换", "♻️ 自动选择", "🎯 全球直连"] },
