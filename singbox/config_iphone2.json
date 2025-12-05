@@ -1,9 +1,16 @@
+
 {
-    "log": {
-        "disabled": false,
-        "level": "info",
-        "timestamp": true
-    },
+  "log": {
+    "disabled": false,
+    "level": "debug",
+    "timestamp": true
+  },
+  
+  "experimental": {
+  "cache_file": {
+    "enabled": true
+    }
+  },
     "dns": {
         "servers": [
             {"tag": "dns_proxy","address": "tls://1.1.1.1","address_resolver": "dns_resolver"},
