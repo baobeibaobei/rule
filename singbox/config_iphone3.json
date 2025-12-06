@@ -101,61 +101,20 @@
       {"tag": "notcn","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/geolocation-!cn.srs","update_interval": "24h","download_detour": "🐋 默认节点"}
     ],
     "rules": [
-      {
-        "action": "sniff"
-      },
-      {
-        "protocol": "dns",
-        "action": "hijack-dns"
-      },
-      {
-        "clash_mode": "Direct",
-        "outbound": "🎯 全球直连"
-      },
-      {
-        "clash_mode": "Global",
-        "outbound": "🐋 默认节点"
-      },
-      {
-        "domain_suffix": ["uuuoo.cc", "emby.bid", "emby.date", "emby.loan", "emby.trade"],
-        "outbound": "📽️ 黑猫emby"
-      },
-      {
-        "rule_set": "bilibili",
-        "outbound": "📺 哔哩哔哩"
-      },
-      {
-        "rule_set": "paypal",
-        "outbound": "🗃️ PayPal"
-      },
-      {
-        "rule_set": "aiservice",
-        "outbound": "🤖 海外AI服务"
-      },
-      {
-        "rule_set": "youtube",
-        "outbound": "▶️ YouTube"
-      },
-      {
-        "rule_set": ["telegramip", "telegramsite"],
-        "outbound": "📟 Telegram"
-      },
-      {
-        "rule_set": "tiktok",
-        "outbound": "🎵 TikTok"
-      },
-      {
-        "rule_set": ["netflixsite", "netflixip", "hbo", "primevideo", "disney", "hulu"],
-        "outbound": "🎥 海外流媒体"
-      },
-      {
-        "rule_set": ["privatesite", "privateip", "cnsite", "cnip", "cngames"],
-        "outbound": "🚅 国内流量"
-      },
-      {
-        "rule_set": ["gfw", "proxy"],
-        "outbound": "🐋 默认节点"
-      }
+      {"action": "sniff"},
+      {"protocol": "dns","action": "hijack-dns"},
+      {"clash_mode": "Direct","outbound": "🎯 全球直连"},
+      {"clash_mode": "Global","outbound": "🐋 默认节点"},
+      {"domain_suffix": ["uuuoo.cc", "emby.bid", "emby.date", "emby.loan", "emby.trade"],"outbound": "📽️ 黑猫emby"},
+      {"rule_set": "bilibili","outbound": "📺 哔哩哔哩"},
+      {"rule_set": "paypal","outbound": "🗃️ PayPal"},
+      {"rule_set": "aiservice","outbound": "🤖 海外AI服务"},
+      {"rule_set": "youtube","outbound": "▶️ YouTube"},
+      {"rule_set": ["telegramip", "telegramsite"],"outbound": "📟 Telegram"},
+      {"rule_set": "tiktok","outbound": "🎵 TikTok"},
+      {"rule_set": ["netflixsite", "netflixip", "hbo", "primevideo", "disney", "hulu"],"outbound": "🎥 海外流媒体"},
+      {"rule_set": ["privatesite", "privateip", "cnsite", "cnip", "cngames"],"outbound": "🚅 国内流量"},
+      {"rule_set": ["gfw", "proxy"],"outbound": "🐋 默认节点"}
     ]
   }
 }
