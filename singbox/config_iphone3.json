@@ -108,7 +108,7 @@
       {"action": "sniff"},
       {"protocol": "dns","action": "hijack-dns"},
       {"clash_mode": "Direct","outbound": "🎯 全球直连"},
-      {"clash_mode": "Global","outbound": "🐋 默认节点"},
+      {"clash_mode": "Global","outbound": "GLOBAL"},
       {"domain_suffix": ["uuuoo.cc", "emby.bid", "emby.date", "emby.loan", "emby.trade"],"outbound": "📽️ 黑猫emby"},
       {"rule_set": "bilibili","outbound": "📺 哔哩哔哩"},
       {"rule_set": "paypal","outbound": "🗃️ PayPal"},
