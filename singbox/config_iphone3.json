@@ -25,7 +25,7 @@
     "rules": [
       {"rule_set": "cnsite","server": "cn_dns"},
       {"rule_set": "notcn","server": "proxy_dns"},
-      {"outbound": "any","server": "cn_dns"}
+      {"outbound": "any","server": "default_dns"}
     ],
     "final": "proxy_dns",
     "disable_cache": true,
