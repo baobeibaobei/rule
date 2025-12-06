@@ -61,27 +61,9 @@
     {"type": "selector","tag": "📟 Telegram","outbounds": ["🐋 默认节点", "⚙️ 手动切换", "🎚️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇺🇸 美国节点", "🇯🇵 日本节点", "🚅 国内流量"]},
     {"type": "urltest","tag": "🇭🇰 香港节点","url": "https://cp.cloudflare.com","outbounds": [],"interval": "300s"},
     {"type": "urltest","tag": "🇹🇼 台湾节点","url": "https://cp.cloudflare.com","outbounds": [],"interval": "300s"},
-    {
-      "type": "urltest",
-      "tag": "🇸🇬 新加坡节点",
-      "url": "https://cp.cloudflare.com",
-      "outbounds": [],
-      "interval": "300s"
-    },
-    {
-      "type": "urltest",
-      "tag": "🇺🇸 美国节点",
-      "url": "https://cp.cloudflare.com",
-      "outbounds": [],
-      "interval": "300s"
-    },
-    {
-      "type": "urltest",
-      "tag": "🇯🇵 日本节点",
-      "url": "https://cp.cloudflare.com",
-      "outbounds": [],
-      "interval": "300s"
-    }
+    {"type": "urltest","tag": "🇸🇬 新加坡节点","url": "https://cp.cloudflare.com","outbounds": [],"interval": "300s"},
+    {"type": "urltest","tag": "🇺🇸 美国节点","url": "https://cp.cloudflare.com","outbounds": [],"interval": "300s"},
+    {"type": "urltest","tag": "🇯🇵 日本节点","url": "https://cp.cloudflare.com","outbounds": [],"interval": "300s"}
   ],
   "route": {
     "final": "🐋 默认节点",
