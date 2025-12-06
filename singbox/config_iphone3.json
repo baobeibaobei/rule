@@ -18,9 +18,8 @@
   },
   "dns": {
     "servers": [
-      {"tag": "proxy_dns","address": "https://1.1.1.1/dns-query","address_resolver": "default_dns","detour": "🐋 默认节点"},
-      {"tag": "cn_dns","address": "https://223.5.5.5/dns-query","address_resolver": "default_dns","detour": "🚅 国内流量"},
-      {"tag": "default_dns","address": "223.5.5.5","detour": "🚅 国内流量"},
+      {"tag": "proxy_dns","address": "1.1.1.1","detour": "🐋 默认节点"},
+      {"tag": "cn_dns","address": "223.5.5.5","detour": "🚅 国内流量"},
     ],
     "rules": [
       {"rule_set": "cnsite","server": "cn_dns"},
