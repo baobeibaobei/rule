@@ -116,7 +116,7 @@
       {"rule_set": "tiktok","outbound": "🎵 TikTok"},
       {"rule_set": ["netflixsite", "netflixip", "hbo", "primevideo", "disney", "hulu"],"outbound": "🎥 海外流媒体"},
       {"rule_set": ["privatesite", "privateip", "cnsite", "cnip", "cngames"],"outbound": "🚅 国内流量"},
-      {"rule_set": ["gfw", "proxy"],"outbound": "🐋 默认节点"}
+      {"rule_set": ["gfw", "proxy", "notcn"],"outbound": "🐋 默认节点"}
     ]
   }
 }
