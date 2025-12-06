@@ -76,8 +76,8 @@
     
   ],
   "route": {
-    "final": "🚀 节点选择",
-    "auto_detect_interface": true,
+      "auto_detect_interface": true,
+      "final": "🐠 漏网之鱼",
     "rule_set": [
       {
         "tag": "privatesite",
