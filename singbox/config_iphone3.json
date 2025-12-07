@@ -117,6 +117,7 @@
       {"rule_set": "aiservice","outbound": "🤖 海外AI服务"},
       {"rule_set": "youtube","outbound": "▶️ YouTube"},
       {"rule_set": "github","outbound": "👨‍💻 Github"},
+      {"rule_set": "microsoft","outbound": "Ⓜ️ 微软服务"},
       {"rule_set": ["telegramip", "telegramsite"],"outbound": "📟 Telegram"},
       {"rule_set": "tiktok","outbound": "🎵 TikTok"},
       {"rule_set": ["netflixsite", "netflixip", "hbo", "primevideo", "disney", "hulu"],"outbound": "🎥 海外流媒体"},
