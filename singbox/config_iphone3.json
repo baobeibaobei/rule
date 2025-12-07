@@ -131,6 +131,7 @@
       {"rule_set": "github","outbound": "👨‍💻 Github"},
       {"rule_set": "onedrive","outbound": "☁️ OneDrive"},
       {"rule_set": "microsoft","outbound": "Ⓜ️ 微软服务"},
+      {"rule_set": "googlefcm","outbound": "📢 谷歌FCM"},
       {"rule_set": ["googleip", "googlesite"],"outbound": "🇬 谷歌服务"},
       {"rule_set": ["telegramip", "telegramsite"],"outbound": "📟 Telegram"},
       {"rule_set": "tiktok","outbound": "🎶 TikTok"},
