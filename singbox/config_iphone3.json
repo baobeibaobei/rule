@@ -92,6 +92,7 @@
       {"tag": "aiservice","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ai-!cn.srs","update_interval": "24h","download_detour": "🐋 默认节点"},
       {"tag": "youtube","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/youtube.srs","update_interval": "24h","download_detour": "🐋 默认节点"},
       {"tag": "github","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/github.srs","update_interval": "24h","download_detour": "🐋 默认节点"},
+      {"tag": "microsoft","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft.srs","update_interval": "24h","download_detour": "🐋 默认节点"},
       {"tag": "paypal","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/paypal.srs","update_interval": "24h","download_detour": "🐋 默认节点"},
       {"tag": "tiktok","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/tiktok.srs","update_interval": "24h","download_detour": "🐋 默认节点"},
       {"tag": "telegramip","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs","update_interval": "24h","download_detour": "🐋 默认节点"},
