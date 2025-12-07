@@ -108,6 +108,7 @@
       {"tag": "hbo","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/hbo.srs","update_interval": "24h","download_detour": "🐋 默认节点"},
       {"tag": "primevideo","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/primevideo.srs","update_interval": "24h","download_detour": "🐋 默认节点"},
       {"tag": "hulu","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/hulu.srs","update_interval": "24h","download_detour": "🐋 默认节点"},
+      {"tag": "apple-tvplus","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/apple-tvplus.srs","update_interval": "24h","download_detour": "🐋 默认节点"},
       {"tag": "bahamut","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/bahamut.srs","update_interval": "24h","download_detour": "🐋 默认节点"},
       {"tag": "bilibili","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/bilibili.srs","update_interval": "24h","download_detour": "🐋 默认节点"},
       {"tag": "notcn","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/geolocation-!cn.srs","update_interval": "24h","download_detour": "🐋 默认节点"}
@@ -125,10 +126,10 @@
       {"rule_set": "github","outbound": "👨‍💻 Github"},
       {"rule_set": "onedrive","outbound": "☁️ OneDrive"},
       {"rule_set": "microsoft","outbound": "Ⓜ️ 微软服务"},
-      {"rule_set": "apple","outbound": "🍏 Apple"},
       {"rule_set": ["telegramip", "telegramsite"],"outbound": "📟 Telegram"},
       {"rule_set": "tiktok","outbound": "🎵 TikTok"},
-      {"rule_set": ["netflixsite", "netflixip", "hbo", "primevideo", "disney", "hulu"],"outbound": "🎥 海外流媒体"},
+      {"rule_set": ["netflixsite", "netflixip", "hbo", "primevideo", "disney", "hulu", "apple-tvplus"],"outbound": "🎥 海外流媒体"},
+      {"rule_set": "apple","outbound": "🍏 Apple"},
       {"rule_set": "bahamut","outbound": "📺 Bahamut"},
       {"rule_set": ["privatesite", "privateip", "cnsite", "cnip", "cngames"],"outbound": "🚅 国内流量"},
       {"rule_set": ["gfw", "proxy", "notcn"],"outbound": "🐋 默认节点"}
