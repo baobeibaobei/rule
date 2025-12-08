@@ -125,6 +125,7 @@
     ],
     "rules": [
       {"action": "sniff"},
+      {"rule_set": "category-ads-all","outbound": "🛡️ 广告策略"},
       {"protocol": "dns","action": "hijack-dns"},
       {"clash_mode": "Direct","outbound": "🐉 全球直连"},
       {"clash_mode": "Global","outbound": "GLOBAL"},
