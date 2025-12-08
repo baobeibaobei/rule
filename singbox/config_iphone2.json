@@ -72,6 +72,7 @@
     {"tag": "📽️ 黑猫emby","type": "selector","outbounds": ["🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
     {"tag": "📱 Telegram","type": "selector","outbounds": ["🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
     {"tag": "📺 Bahamut","type": "selector","outbounds": ["🇹🇼 台湾节点", "🇭🇰 香港节点", "🌐 默认节点", "🪄 手动选择", "🏡 国内流量"]},
+    {"tag": "🛡️ 广告策略","type": "selector","outbounds": ["🚫 屏蔽广告", "❌ 拒绝连接", "🌐 默认节点", "🪄 手动选择", "🏡 国内流量"]},
     {"tag": "🐟️ 漏网之鱼", "type": "selector", "outbounds": ["🌐 默认节点", "🪄 手动选择", "🏡 国内流量"]},
     {"tag": "🇭🇰 香港节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["港|HK|hk|Hong Kong|HongKong|hongkong|深港"] }]},
     {"tag": "🇹🇼 台湾节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["台|新北|彰化|TW|Taiwan"] }]},
