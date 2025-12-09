@@ -96,7 +96,7 @@
       {"tag": "cnsite","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
       {"tag": "cnip","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
       {"tag": "cngames","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-games-!cn@cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
-      {"tag": "category-ads-all","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ads-all.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+      {"tag": "category-ads-all@ads","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ads-all@ads.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
       {"tag": "gfw","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/gfw.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
       {"tag": "proxy","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo-lite/geosite/proxy.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
       {"tag": "aiservice","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ai-!cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
@@ -126,7 +126,7 @@
     ],
     "rules": [
       {"action": "sniff"},
-      {"rule_set": "category-ads-all","outbound": "🛡️ 广告策略"},
+      {"rule_set": "category-ads-all@ads","outbound": "🛡️ 广告策略"},
       {"protocol": "dns","action": "hijack-dns"},
       {"clash_mode": "Direct","outbound": "🐉 全球直连"},
       {"clash_mode": "Global","outbound": "GLOBAL"},
