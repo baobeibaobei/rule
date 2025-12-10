@@ -55,8 +55,8 @@
   ],
   "route": {
     "rules": [
-      {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"]},
-      {"type": "logical", "mode": "or", "rules": [{"port": 53}, {"protocol": "dns"}], "action": "hijack-dns"},
+      {"action": "sniff"},
+      {"protocol": "dns"}], "action": "hijack-dns"},
       {"clash_mode": "direct", "outbound": "🏡 国内流量"},
       {"clash_mode": "global", "outbound": "GLOBAL"},
       {"rule_set": "category-ads@ads","outbound": "🛡️ 广告策略"},
