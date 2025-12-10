@@ -9,7 +9,8 @@
       {"clash_mode": "direct", "server": "cn_dns"},
       {"clash_mode": "global", "server": "proxy_dns"},
       {"rule_set": "cnsite", "server": "cn_dns"},
-      {"rule_set": "notcn","server": "proxy_dns"}
+      {"rule_set": "notcn","server": "proxy_dns"},
+      {"outbound": "any","server": "default_dns"}
     ],
     "final": "proxy_dns",
     "strategy": "prefer_ipv4",
