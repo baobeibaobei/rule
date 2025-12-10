@@ -1,4 +1,3 @@
-
 {
   "experimental": {
     "clash_api": {
@@ -7,7 +6,7 @@
       "secret": "",
       "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
       "external_ui_download_detour": "🌐 默认节点",
-      "default_mode": "rule"
+      "default_mode": "Rule"
     },
     "cache_file": {
       "enabled": true
@@ -125,10 +124,10 @@
     ],
     "rules": [
       {"action": "sniff"},
-      {"rule_set": "category-ads@ads","outbound": "🛡️ 广告策略"},
       {"protocol": "dns","action": "hijack-dns"},
       {"clash_mode": "Direct","outbound": "🐉 全球直连"},
       {"clash_mode": "Global","outbound": "GLOBAL"},
+      {"rule_set": "category-ads@ads","outbound": "🛡️ 广告策略"},
       {"domain_suffix": ["uuuoo.cc", "emby.bid", "emby.date", "emby.loan", "emby.trade"],"outbound": "📽️ 黑猫emby"},
       {"rule_set": "bilibili","outbound": "🅱️ 哔哩哔哩"},
       {"rule_set": "paypal","outbound": "🗃️ PayPal"},
