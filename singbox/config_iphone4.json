@@ -6,8 +6,6 @@
       {"tag": "proxy_dns","address": "https://1.1.1.1/dns-query","address_resolver": "default_dns", "address_strategy": "ipv4_only","detour": "🌐 默认节点"}
     ],
     "rules": [
-      {"clash_mode": "direct", "server": "cn_dns"},
-      {"clash_mode": "global", "server": "proxy_dns"},
       {"rule_set": "cnsite", "server": "cn_dns"},
       {"rule_set": "notcn","server": "proxy_dns"},
       {"outbound": "any","server": "default_dns"}
