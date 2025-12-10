@@ -80,7 +80,7 @@
       {"rule_set": "bahamut","outbound": "📺 Bahamut"},
       {"rule_set": ["privatesite", "privateip", "cnsite", "cnip", "cngames"],"outbound": "🏡 国内流量"},
       {"rule_set": ["gfw", "proxy", "notcn"],"outbound": "🌐 默认节点"}
-    ],
+    ]
     "rule_set": [
       {"tag": "privatesite","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/private.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
       {"tag": "privateip","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/private.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
