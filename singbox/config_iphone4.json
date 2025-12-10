@@ -113,8 +113,7 @@
       {"tag": "notcn","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/geolocation-!cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"}
     ],
     "final": "🐟️ 漏网之鱼",
-    "auto_detect_interface": true,
-    "default_domain_resolver": {"server": "cn_dns"}
+    "auto_detect_interface": true
   },
   "inbounds": [
     {
