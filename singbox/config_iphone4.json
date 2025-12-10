@@ -56,31 +56,8 @@
     
   ],
   "route": {
-    "rules": [
-      {"action": "sniff"},
-      {"protocol": "dns"}], "action": "hijack-dns"},
-      {"clash_mode": "Direct", "outbound": "🏡 国内流量"},
-      {"clash_mode": "Global", "outbound": "GLOBAL"},
-      {"rule_set": "category-ads@ads","outbound": "🛡️ 广告策略"},
-      {"domain_suffix": ["uuuoo.cc", "emby.bid", "emby.date", "emby.loan", "emby.trade"],"outbound": "📽️ 黑猫emby"},
-      {"rule_set": "bilibili","outbound": "🅱️ 哔哩哔哩"},
-      {"rule_set": "paypal","outbound": "🗃️ PayPal"},
-      {"rule_set": "aiservice","outbound": "🤖 海外AI服务"},
-      {"rule_set": "youtube","outbound": "▶️ YouTube"},
-      {"rule_set": "github","outbound": "👨‍💻 Github"},
-      {"rule_set": "onedrive","outbound": "☁️ OneDrive"},
-      {"rule_set": "microsoft","outbound": "Ⓜ️ 微软服务"},
-      {"rule_set": "googlefcm","outbound": "📢 谷歌FCM"},
-      {"rule_set": ["googleip", "googlesite"],"outbound": "🔎 谷歌服务"},
-      {"rule_set": ["telegramip", "telegramsite"],"outbound": "📱 Telegram"},
-      {"rule_set": "tiktok","outbound": "🎶 TikTok"},
-      {"rule_set": ["netflixsite", "netflixip", "hbo", "primevideo", "disney", "hulu", "apple-tvplus"],"outbound": "🎥 海外流媒体"},
-      {"rule_set": "spotify","outbound": "🎧 Spotify"},
-      {"rule_set": "apple","outbound": "🍏 苹果服务"},
-      {"rule_set": "bahamut","outbound": "📺 Bahamut"},
-      {"rule_set": ["privatesite", "privateip", "cnsite", "cnip", "cngames"],"outbound": "🏡 国内流量"},
-      {"rule_set": ["gfw", "proxy", "notcn"],"outbound": "🌐 默认节点"}
-    ],
+      "auto_detect_interface": true,
+      "final": "🐟️ 漏网之鱼",
     "rule_set": [
       {"tag": "privatesite","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/private.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
       {"tag": "privateip","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/private.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
@@ -115,9 +92,31 @@
       {"tag": "bilibili","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/bilibili.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
       {"tag": "notcn","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/geolocation-!cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"}
     ],
-    "final": "🐟️ 漏网之鱼",
-    "auto_detect_interface": true
-  },
+    "rules": [
+      {"action": "sniff"},
+      {"rule_set": "category-ads@ads","outbound": "🛡️ 广告策略"},
+      {"protocol": "dns","action": "hijack-dns"},
+      {"clash_mode": "Direct","outbound": "🐉 全球直连"},
+      {"clash_mode": "Global","outbound": "GLOBAL"},
+      {"domain_suffix": ["uuuoo.cc", "emby.bid", "emby.date", "emby.loan", "emby.trade"],"outbound": "📽️ 黑猫emby"},
+      {"rule_set": "bilibili","outbound": "🅱️ 哔哩哔哩"},
+      {"rule_set": "paypal","outbound": "🗃️ PayPal"},
+      {"rule_set": "aiservice","outbound": "🤖 海外AI服务"},
+      {"rule_set": "youtube","outbound": "▶️ YouTube"},
+      {"rule_set": "github","outbound": "👨‍💻 Github"},
+      {"rule_set": "onedrive","outbound": "☁️ OneDrive"},
+      {"rule_set": "microsoft","outbound": "Ⓜ️ 微软服务"},
+      {"rule_set": "googlefcm","outbound": "📢 谷歌FCM"},
+      {"rule_set": ["googleip", "googlesite"],"outbound": "🔎 谷歌服务"},
+      {"rule_set": ["telegramip", "telegramsite"],"outbound": "📱 Telegram"},
+      {"rule_set": "tiktok","outbound": "🎶 TikTok"},
+      {"rule_set": ["netflixsite", "netflixip", "hbo", "primevideo", "disney", "hulu", "apple-tvplus"],"outbound": "🎥 海外流媒体"},
+      {"rule_set": "spotify","outbound": "🎧 Spotify"},
+      {"rule_set": "apple","outbound": "🍏 苹果服务"},
+      {"rule_set": "bahamut","outbound": "📺 Bahamut"},
+      {"rule_set": ["privatesite", "privateip", "cnsite", "cnip", "cngames"],"outbound": "🏡 国内流量"},
+      {"rule_set": ["gfw", "proxy", "notcn"],"outbound": "🌐 默认节点"}
+    ],
   "inbounds": [
     {
       "type": "tun",
