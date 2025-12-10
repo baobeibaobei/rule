@@ -6,8 +6,8 @@
       {"tag": "proxy_dns","address": "https://1.1.1.1/dns-query","address_resolver": "default_dns", "address_strategy": "ipv4_only","detour": "🌐 默认节点"}
     ],
     "rules": [
-      {"clash_mode": "direct", "server": "cn_dns"},
-      {"clash_mode": "global", "server": "proxy_dns"},
+      {"clash_mode": "Direct", "server": "cn_dns"},
+      {"clash_mode": "Global", "server": "proxy_dns"},
       {"rule_set": "cnsite", "server": "cn_dns"},
       {"rule_set": "notcn","server": "proxy_dns"},
       {"outbound": "any","server": "default_dns"}
@@ -59,8 +59,8 @@
     "rules": [
       {"action": "sniff"},
       {"protocol": "dns"}], "action": "hijack-dns"},
-      {"clash_mode": "direct", "outbound": "🏡 国内流量"},
-      {"clash_mode": "global", "outbound": "GLOBAL"},
+      {"clash_mode": "Direct", "outbound": "🏡 国内流量"},
+      {"clash_mode": "Global", "outbound": "GLOBAL"},
       {"rule_set": "category-ads@ads","outbound": "🛡️ 广告策略"},
       {"domain_suffix": ["uuuoo.cc", "emby.bid", "emby.date", "emby.loan", "emby.trade"],"outbound": "📽️ 黑猫emby"},
       {"rule_set": "bilibili","outbound": "🅱️ 哔哩哔哩"},
