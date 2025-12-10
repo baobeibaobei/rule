@@ -94,10 +94,10 @@
     ],
     "rules": [
       {"action": "sniff"},
-      {"rule_set": "category-ads@ads","outbound": "🛡️ 广告策略"},
       {"protocol": "dns","action": "hijack-dns"},
       {"clash_mode": "Direct","outbound": "🐉 全球直连"},
       {"clash_mode": "Global","outbound": "GLOBAL"},
+      {"rule_set": "category-ads@ads","outbound": "🛡️ 广告策略"},
       {"domain_suffix": ["uuuoo.cc", "emby.bid", "emby.date", "emby.loan", "emby.trade"],"outbound": "📽️ 黑猫emby"},
       {"rule_set": "bilibili","outbound": "🅱️ 哔哩哔哩"},
       {"rule_set": "paypal","outbound": "🗃️ PayPal"},
