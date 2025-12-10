@@ -1,22 +1,52 @@
 {
+  "experimental": {
+    "clash_api": {
+      "external_controller": "0.0.0.0:9090",
+      "external_ui": "ui",
+      "secret": "",
+      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_download_detour": "🌐 默认节点",
+      "default_mode": "rule"
+    },
+    "cache_file": {
+      "enabled": true
+    }
+  },
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
   "dns": {
     "servers": [
-      {"tag": "default_dns","address": "223.5.5.5","address_strategy": "ipv4_only","detour": "🏡 国内流量"},
+      {"tag": "proxy_dns","address": "https://1.1.1.1/dns-query","address_resolver": "default_dns", "address_strategy": "ipv4_only","detour": "🌐 默认节点"},
       {"tag": "cn_dns","address": "https://223.5.5.5/dns-query","address_resolver": "default_dns", "address_strategy": "ipv4_only","detour": "🏡 国内流量"},
-      {"tag": "proxy_dns","address": "https://1.1.1.1/dns-query","address_resolver": "default_dns", "address_strategy": "ipv4_only","detour": "🌐 默认节点"}
+      {"tag": "default_dns","address": "223.5.5.5","address_strategy": "ipv4_only","detour": "🏡 国内流量"}
     ],
     "rules": [
-      {"clash_mode": "Direct", "server": "cn_dns"},
-      {"clash_mode": "Global", "server": "proxy_dns"},
-      {"rule_set": "cnsite", "server": "cn_dns"},
+      {"rule_set": "cnsite","server": "cn_dns"},
       {"rule_set": "notcn","server": "proxy_dns"},
       {"outbound": "any","server": "default_dns"}
     ],
     "final": "proxy_dns",
-    "strategy": "prefer_ipv4",
-    "independent_cache": true,
-    "reverse_mapping": true
+    "disable_cache": true,
+    "independent_cache": false,
+    "strategy": "prefer_ipv4"
   },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "singbox_tun",
+      "address": ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
+      "auto_route": true,
+      "strict_route": true
+    },
+    {
+      "type": "mixed",
+      "listen": "::",
+      "listen_port": 2080
+    }
+  ],
   "outbounds": [
     {"tag": "🐉 全球直连", "type": "direct"},
     {"tag": "🚫 屏蔽广告", "type": "block"},
@@ -94,10 +124,10 @@
     ],
     "rules": [
       {"action": "sniff"},
+      {"rule_set": "category-ads@ads","outbound": "🛡️ 广告策略"},
       {"protocol": "dns","action": "hijack-dns"},
       {"clash_mode": "Direct","outbound": "🐉 全球直连"},
       {"clash_mode": "Global","outbound": "GLOBAL"},
-      {"rule_set": "category-ads@ads","outbound": "🛡️ 广告策略"},
       {"domain_suffix": ["uuuoo.cc", "emby.bid", "emby.date", "emby.loan", "emby.trade"],"outbound": "📽️ 黑猫emby"},
       {"rule_set": "bilibili","outbound": "🅱️ 哔哩哔哩"},
       {"rule_set": "paypal","outbound": "🗃️ PayPal"},
@@ -116,28 +146,6 @@
       {"rule_set": "bahamut","outbound": "📺 Bahamut"},
       {"rule_set": ["privatesite", "privateip", "cnsite", "cnip", "cngames"],"outbound": "🏡 国内流量"},
       {"rule_set": ["gfw", "proxy", "notcn"],"outbound": "🌐 默认节点"}
-    ],
-  "inbounds": [
-    {
-      "type": "tun",
-      "address": ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
-      "mtu": 9000,
-      "auto_route": true
-    }
-  ],
-  "experimental": {
-    "cache_file": {
-      "enabled": true
-    },
-    "clash_api": {
-      "external_controller": "127.0.0.1:9095",
-      "secret": "",
-      "default_mode": "rule"
-    }
-  },
-  "log": {
-    "disabled": false,
-    "level": "info",
-    "timestamp": true
+    ]
   }
 }
