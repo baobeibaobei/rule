@@ -89,7 +89,7 @@
       "auto_detect_interface": true,
       "final": "🐟️ 漏网之鱼",
     "rule_set": [
-      {"tag": "custom_direct", "type": "remote", "format": "source", "url": "https://github.com/baobeibaobei/rule/refs/heads/singbox/custom_direct.json","update_interval": "24h","download_detour": "🌐 默认节点"},
+      {"tag": "custom_direct", "type": "remote", "format": "source", "url": "https://github.com/baobeibaobei/rule/raw/refs/heads/main/singbox/custom_direct.json","update_interval": "24h","download_detour": "🌐 默认节点"},
       {"tag": "privatesite","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/private.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
       {"tag": "privateip","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/private.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
       {"tag": "cnsite","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
