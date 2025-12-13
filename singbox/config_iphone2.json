@@ -145,7 +145,7 @@
       {"rule_set": "spotify","outbound": "🎧 Spotify"},
       {"rule_set": "apple","outbound": "🍏 苹果服务"},
       {"rule_set": "bahamut","outbound": "📺 Bahamut"},
-      {"rule_set": ["privatesite", "privateip", "cnsite", "cnip", "cngames"],"outbound": "🏡 国内流量"},
+      {"rule_set": ["custom_direct", "privatesite", "privateip", "cnsite", "cnip", "cngames"],"outbound": "🏡 国内流量"},
       {"rule_set": ["gfw", "proxy", "notcn"],"outbound": "🌐 默认节点"}
     ]
   }
