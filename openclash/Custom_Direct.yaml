@@ -4,4 +4,7 @@ payload:
   - DOMAIN-SUFFIX,zhuzhendi.com
   - DOMAIN-SUFFIX,v1.mk
   - DOMAIN-SUFFIX,kaogujia.com
-  - DOMAIN-KEYWORD,poki
+  - DOMAIN-SUFFIX,poki.com
+  - DOMAIN-SUFFIX,poki-cdn.com
+  - DOMAIN-SUFFIX,poki.io
+  - DOMAIN-SUFFIX,poki-gdn.com
