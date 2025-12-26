@@ -23,8 +23,8 @@
       {"tag": "default_dns","address": "223.5.5.5","address_strategy": "ipv4_only","detour": "🏡 国内流量"}
     ],
     "rules": [
-      {"rule_set": "cnsite","server": "cn_dns"},
-      {"rule_set": "notcn","server": "proxy_dns"},
+      {"rule_set": "geosite-cn","server": "cn_dns"},
+      {"rule_set": "geosite-!cn","server": "proxy_dns"},
       {"outbound": "any","server": "default_dns"}
     ],
     "final": "proxy_dns",
