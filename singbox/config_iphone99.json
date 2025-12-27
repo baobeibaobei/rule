@@ -122,8 +122,8 @@
 	  {"tag": "geoip-cn","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"}
     ],
     "rules": [
-      {"action": "sniff"},
-      {"protocol": "dns","action": "hijack-dns"},
+      {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"]},
+      {"type": "logical", "mode": "or", "rules": [{"port": 53}, {"protocol": "dns"}], "action": "hijack-dns"},
       {"clash_mode": "Direct","outbound": "🏡 国内流量"},
       {"clash_mode": "Global","outbound": "GLOBAL"},
       {"rule_set": "geosite-ads","outbound": "🛡️ 广告策略"},
