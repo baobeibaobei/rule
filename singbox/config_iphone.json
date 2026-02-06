@@ -25,7 +25,7 @@
     "rules": [
       {"rule_set": "geosite-cn","server": "cn_dns"},
       {"rule_set": "geosite-!cn","server": "proxy_dns"},
-	    {"outbound": "any","server": "default_dns"}
+	  {"outbound": "any","server": "default_dns"}
     ],
     "final": "proxy_dns",
     "disable_cache": true,
