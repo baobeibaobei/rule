@@ -1,1 +1,160 @@
 
+{
+  "experimental": {
+    "clash_api": {
+      "external_controller": "0.0.0.0:9090",
+      "external_ui": "ui",
+      "secret": "",
+      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_download_detour": "🌐 默认节点",
+      "default_mode": "Rule"
+    },
+    "cache_file": {
+      "enabled": true
+    }
+  },
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {"tag": "proxy_dns","address": "https://1.1.1.1/dns-query","address_resolver": "default_dns", "address_strategy": "ipv4_only","detour": "🌐 默认节点"},
+      {"tag": "cn_dns","address": "https://223.5.5.5/dns-query","address_resolver": "default_dns", "address_strategy": "ipv4_only","detour": "🏡 国内流量"},
+      {"tag": "default_dns","address": "223.5.5.5","address_strategy": "ipv4_only","detour": "🏡 国内流量"}
+    ],
+    "rules": [
+      {"rule_set": "geosite-cn","server": "cn_dns"},
+      {"rule_set": "geosite-!cn","server": "proxy_dns"},
+	    {"outbound": "any","server": "default_dns"}
+    ],
+    "final": "proxy_dns",
+    "disable_cache": true,
+    "independent_cache": false,
+    "strategy": "prefer_ipv4"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "singbox_tun",
+      "address": ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
+      "auto_route": true,
+      "strict_route": true
+    },
+    {
+      "type": "mixed",
+      "listen": "::",
+      "listen_port": 2080
+    }
+  ],
+  "outbounds": [
+    {"tag": "🐉 全球直连", "type": "direct"},
+    {"tag": "🚫 屏蔽广告", "type": "block"},
+    {"tag": "🌐 默认节点","type": "selector","outbounds": ["🔯 香港自动", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🪄 手动选择", "♻️ 自动选择", "🐉 全球直连"]},
+    {"tag": "🪄 手动选择","type": "selector","outbounds": ["{all}"]},
+    {"tag": "🏡 国内流量","type": "selector","outbounds": ["🐉 全球直连", "🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点"]},
+    {"tag": "🤖 海外AI服务","type": "selector","outbounds": ["🇺🇸 美国节点", "🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+    {"tag": "▶️ YouTube","type": "selector","outbounds": ["🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+    {"tag": "👨‍💻 Github","type": "selector","outbounds": ["🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+    {"tag": "☁️ OneDrive","type": "selector","outbounds": ["🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+    {"tag": "Ⓜ️ 微软服务","type": "selector","outbounds": ["🏡 国内流量", "🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点"]},
+    {"tag": "🍏 苹果服务","type": "selector","outbounds": ["🏡 国内流量", "🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点"]},
+    {"tag": "📢 谷歌FCM","type": "selector","outbounds": ["🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+    {"tag": "🔎 谷歌服务","type": "selector","outbounds": ["🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+    {"tag": "🎥 海外流媒体","type": "selector","outbounds": ["🪄 手动选择", "🌐 默认节点", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+    {"tag": "🎶 TikTok","type": "selector","outbounds": ["🪄 手动选择", "🌐 默认节点", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+    {"tag": "🎧 Spotify","type": "selector","outbounds": ["🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+    {"tag": "🗃️ PayPal","type": "selector","outbounds": ["🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+    {"tag": "🪙 加密货币","type": "selector","outbounds": ["🪄 手动选择", "🌐 默认节点", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+	  {"tag": "🎮 Steam","type": "selector","outbounds": ["🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+    {"tag": "📱 Telegram","type": "selector","outbounds": ["🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+    {"tag": "📺 Bahamut","type": "selector","outbounds": ["🇹🇼 台湾节点", "🌐 默认节点", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🏡 国内流量"]},
+    {"tag": "🛡️ 广告策略","type": "selector","outbounds": ["🚫 屏蔽广告", "🌐 默认节点", "🪄 手动选择", "🏡 国内流量"]},
+    {"tag": "🐟️ 漏网之鱼", "type": "selector", "outbounds": ["🌐 默认节点", "🪄 手动选择", "🏡 国内流量"]},
+    {"tag": "🇭🇰 香港节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇭🇰|港|\\bHK(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|hk|Hong Kong|HongKong|hongkong|HONG KONG|HONGKONG|深港|HKG|九龙|Kowloon|新界|沙田|荃湾|葵涌"] }]},
+    {"tag": "🇹🇼 台湾节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇹🇼|🇼🇸|台|新北|彰化|\\bTW(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|Taiwan|TAIWAN|TWN|TPE|ROC"] }]},
+    {"tag": "🇸🇬 新加坡节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇸🇬|新加坡|坡|狮城|\\bSG(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|Singapore|SINGAPORE|SIN"] }]},
+    {"tag": "🇯🇵 日本节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇯🇵|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|(?<!尼|-)日|\\bJP(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|Japan|JAPAN|JPN|NRT|HND|KIX|TYO|OSA|关西|Kansai|KANSAI"] }]},
+    {"tag": "🇰🇷 韩国节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇰🇷|\\bKR(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|Korea|KOREA|KOR|首尔|韩|韓|春川|Chuncheon|ICN"] }]},
+    {"tag": "🇺🇸 美国节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇺🇸|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|纽约|纽纽|亚特兰大|迈阿密|华盛顿|\\bUS(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|United States|UnitedStates|UNITED STATES|USA|America|AMERICA|JFK|EWR|IAD|ATL|ORD|MIA|NYC|LAX|SFO|SEA|DFW|SJC"] }, { "action": "exclude", "keywords": ["港|HK|hk|Hong Kong|HongKong|hongkong|深港"] }]},
+    {"tag": "🇨🇦 加拿大节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇨🇦|加拿大|\\bCA(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|Canada|CANADA|CAN|渥太华|温哥华|卡尔加里|蒙特利尔|Montreal|YVR|YYZ|YUL"] }]},
+    {"tag": "🇬🇧 英国节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇬🇧|英国|Britain|United Kingdom|UNITED KINGDOM|England|伦敦|曼彻斯特|Manchester|\\bUK(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|GBR|LHR|MAN"] }]},
+    {"tag": "🔯 香港自动", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇭🇰|港|\\bHK(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|hk|Hong Kong|HongKong|hongkong|HONG KONG|HONGKONG|深港|HKG|九龙|Kowloon|新界|沙田|荃湾|葵涌"] }], "url": "http://www.gstatic.com/generate_204", "interval": "10m", "tolerance": 50},
+    {"tag": "♻️ 自动选择", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "exclude", "keywords": ["网站|地址|剩余|过期|时间|有效"] }], "url": "http://www.gstatic.com/generate_204", "interval": "10m", "tolerance": 50},
+    {"tag": "GLOBAL", "type": "selector", "outbounds": ["{all}"]}
+    
+    
+  ],
+  "route": {
+      "auto_detect_interface": true,
+      "final": "🐟️ 漏网之鱼",
+    "rule_set": [
+      {"tag": "geosite-ads","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ads@ads.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+      {"tag": "custom_direct","type": "remote","format": "source","url": "https://github.com/baobeibaobei/rule/raw/refs/heads/main/singbox/custom_direct.json","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-private","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/private.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+      {"tag": "geosite-ai","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ai-!cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "googlefcm","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/googlefcm.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-youtube","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/youtube.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-google","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-github","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/github.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-onedrive","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/onedrive.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+      {"tag": "geosite-microsoft","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-apple","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/apple.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-telegram","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/telegram.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-tiktok","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/tiktok.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-netflix","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/netflix.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-disney","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/disney.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+      {"tag": "geosite-hbo","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/hbo.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+      {"tag": "geosite-primevideo","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/primevideo.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+      {"tag": "geosite-hulu","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/hulu.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+      {"tag": "geosite-apple-tvplus","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/apple-tvplus.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-spotify","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/spotify.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-bahamut","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/bahamut.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-paypal","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/paypal.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-cryptocurrency","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-cryptocurrency.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-steamcn","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/steam@cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-steam","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/steam.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-!cn","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/geolocation-!cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geosite-cn","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geoip-private","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/private.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geoip-google","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/google.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geoip-apple","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo-lite/geoip/apple.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geoip-telegram","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geoip-netflix","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/netflix.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+	    {"tag": "geoip-cn","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"}
+    ],
+    "rules": [
+      {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"]},
+      {"type": "logical", "mode": "or", "rules": [{"port": 53}, {"protocol": "dns"}], "action": "hijack-dns"},
+      {"clash_mode": "Direct","outbound": "🏡 国内流量"},
+      {"clash_mode": "Global","outbound": "GLOBAL"},
+      {"rule_set": "geosite-ads","outbound": "🛡️ 广告策略"},
+      {"rule_set": "geosite-ai","outbound": "🤖 海外AI服务"},
+	    {"rule_set": "googlefcm","outbound": "📢 谷歌FCM"},
+	    {"rule_set": "geosite-youtube","outbound": "▶️ YouTube"},
+	    {"rule_set": "geosite-google","outbound": "🔎 谷歌服务"},
+	    {"rule_set": "geosite-github","outbound": "👨‍💻 Github"},
+	    {"rule_set": "geosite-onedrive","outbound": "☁️ OneDrive"},
+	    {"rule_set": "geosite-microsoft","outbound": "Ⓜ️ 微软服务"},
+	    {"rule_set": "geosite-apple","outbound": "🍏 苹果服务"},
+	    {"rule_set": "geosite-telegram","outbound": "📱 Telegram"},
+	    {"rule_set": "geosite-tiktok","outbound": "🎶 TikTok"},
+	    {"rule_set": ["geosite-netflix", "geosite-hbo", "geosite-primevideo", "geosite-disney", "geosite-hulu", "geosite-apple-tvplus"],"outbound": "🎥 海外流媒体"},
+	    {"rule_set": "geosite-spotify","outbound": "🎧 Spotify"},
+	    {"rule_set": "geosite-bahamut","outbound": "📺 Bahamut"},
+	    {"rule_set": "geosite-paypal","outbound": "🗃️ PayPal"},
+	    {"rule_set": "geosite-cryptocurrency","outbound": "🪙 加密货币"},
+	    {"rule_set": "geosite-steamcn", "outbound": "🏡 国内流量"},
+	    {"rule_set": "geosite-steam", "outbound": "🎮 Steam"},
+	    {"rule_set": "geosite-!cn", "outbound": "🌐 默认节点"},
+	    {"rule_set": ["custom_direct", "geosite-private", "geosite-cn"],"outbound": "🏡 国内流量"},
+	    {"action": "resolve"},
+	    {"rule_set": "geoip-google", "outbound": "🔎 谷歌服务"},
+      {"rule_set": "geoip-apple", "outbound": "🍏 苹果服务"},
+      {"rule_set": "geoip-telegram", "outbound": "📱 Telegram"},
+      {"rule_set": "geoip-netflix", "outbound": "🎥 海外流媒体"},
+      {"rule_set": ["geoip-private", "geoip-cn"], "outbound": "🏡 国内流量"}
+    ]
+  }
+}
