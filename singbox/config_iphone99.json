@@ -92,7 +92,7 @@
       "auto_detect_interface": true,
       "final": "🐟️ 漏网之鱼",
     "rule_set": [
-      {"tag": "geosite-ads","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ads@ads.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
+      {"tag": "geosite-ads@ads","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ads@ads.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
       {"tag": "custom_direct","type": "remote","format": "source","url": "https://github.com/baobeibaobei/rule/raw/refs/heads/main/singbox/custom_direct.json","update_interval": "24h","download_detour": "🌐 默认节点"},
 	  {"tag": "geosite-private","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/private.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
       {"tag": "geosite-ai","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ai-!cn.srs","update_interval": "24h","download_detour": "🌐 默认节点"},
@@ -131,7 +131,7 @@
       {"type": "logical", "mode": "or", "rules": [{"port": 53}, {"protocol": "dns"}], "action": "hijack-dns"},
       {"clash_mode": "direct","outbound": "🏡 国内流量"},
       {"clash_mode": "global","outbound": "GLOBAL"},
-      {"rule_set": "geosite-ads","outbound": "🛡️ 广告策略"},
+      {"rule_set": "geosite-ads@ads","outbound": "🛡️ 广告策略"},
       {"rule_set": "geosite-ai","outbound": "🤖 海外AI服务"},
 	  {"rule_set": "googlefcm","outbound": "📢 谷歌FCM"},
 	  {"rule_set": "geosite-youtube","outbound": "▶️ YouTube"},
