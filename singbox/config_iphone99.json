@@ -24,9 +24,9 @@
       {"tag": "block_dns","address": "rcode://refused"}
     ],
     "rules": [
+	  {"outbound": "any","server": "default_dns"},
       {"rule_set": "geosite-cn","server": "direct_dns"},
-      {"rule_set": "geosite-!cn","server": "proxy_dns"},
-	  {"outbound": "any","server": "default_dns"}
+      {"rule_set": "geosite-!cn","server": "proxy_dns"}
     ],
     "final": "proxy_dns",
     "disable_cache": true,
