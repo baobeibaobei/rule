@@ -25,6 +25,8 @@
     ],
     "rules": [
 	  {"outbound": "any","server": "default_dns"},
+	  {"clash_mode": "direct", "server": "default_dns"},
+	  {"clash_mode": "global", "server": "proxy_dns"},
       {"rule_set": "geosite-cn","server": "direct_dns"},
       {"rule_set": "geosite-!cn","server": "proxy_dns"}
     ],
@@ -127,8 +129,8 @@
     "rules": [
       {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"]},
       {"type": "logical", "mode": "or", "rules": [{"port": 53}, {"protocol": "dns"}], "action": "hijack-dns"},
-      {"clash_mode": "Direct","outbound": "🏡 国内流量"},
-      {"clash_mode": "Global","outbound": "GLOBAL"},
+      {"clash_mode": "direct","outbound": "🏡 国内流量"},
+      {"clash_mode": "global","outbound": "GLOBAL"},
       {"rule_set": "geosite-ads","outbound": "🛡️ 广告策略"},
       {"rule_set": "geosite-ai","outbound": "🤖 海外AI服务"},
 	  {"rule_set": "googlefcm","outbound": "📢 谷歌FCM"},
