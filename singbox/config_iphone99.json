@@ -39,21 +39,16 @@
   "inbounds": [
     {
       "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "singbox_tun",
       "address": ["172.19.0.0/30","fdfe:dcba:9876::0/126"],
-      "stack": "mixed",
       "auto_route": true,
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 2080
-        }
-      }
+      "strict_route": true
     },
     {
       "type": "mixed",
-      "listen": "127.0.0.1",
-      "listen_port": 2080
+      "listen": "::",
+      "listen_port": 7890
     }
   ],
   "outbounds": [
