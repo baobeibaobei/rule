@@ -33,7 +33,8 @@
     "final": "proxy_dns",
     "disable_cache": false,
     "independent_cache": true,
-    "strategy": "prefer_ipv4"
+    "strategy": "prefer_ipv4",
+    "reverse_mapping": true
   },
   "inbounds": [
     {
