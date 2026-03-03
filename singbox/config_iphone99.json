@@ -38,10 +38,7 @@
   "inbounds": [
     {
       "type": "tun",
-      "address": [
-        "172.19.0.0/30",
-        "fdfe:dcba:9876::0/126"
-      ],
+      "address": ["172.19.0.0/30","fdfe:dcba:9876::0/126"],
       "stack": "mixed",
       "auto_route": true,
       "platform": {
