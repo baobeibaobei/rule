@@ -95,8 +95,7 @@
   ],
   "route": {
       "auto_detect_interface": true,
-      "final": "🐟️ 漏网之鱼",
-      "default_domain_resolver": {"server": "proxy_dns"}
+      "final": "🐟️ 漏网之鱼"
     "rule_set": [
       {"tag": "geosite-ads@ads","type": "remote","format": "binary","url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ads@ads.srs","download_detour": "🌐 默认节点"},
       {"tag": "custom_direct","type": "remote","format": "source","url": "https://github.com/baobeibaobei/rule/raw/refs/heads/main/singbox/custom_direct.json","download_detour": "🌐 默认节点"},
