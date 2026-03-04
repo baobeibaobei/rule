@@ -31,7 +31,6 @@
       {"rule_set": "geosite-!cn","server": "proxy_dns"}
     ],
     "final": "proxy_dns",
-    "disable_cache": false,
     "independent_cache": true,
     "strategy": "prefer_ipv4",
     "reverse_mapping": true
@@ -39,15 +38,20 @@
   "inbounds": [
     {
       "type": "tun",
-      "tag": "tun-in",
-      "interface_name": "singbox_tun",
-      "address": ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
+      "address": ["172.19.0.1/30","fdfe:dcba:9876::1/126"],
+      "stack": "mixed",
       "auto_route": true,
-      "strict_route": true
+      "platform": {
+        "http_proxy": {
+          "enabled": false,
+          "server": "127.0.0.1",
+          "server_port": 2080
+        }
+      }
     },
     {
       "type": "mixed",
-      "listen": "::",
+      "listen": "127.0.0.1",
       "listen_port": 2080
     }
   ],
