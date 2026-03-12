@@ -162,8 +162,8 @@ rules:
   - RULE-SET,geosite-ookla-speedtest,🛜 测速工具
   - RULE-SET,geosite-youtube,▶️ YouTube
   - RULE-SET,geosite-apple-tvplus,🎥 AppleTV+
-  - RULE-SET,geoip-apple,🍏 苹果服务,no-resolve
   - RULE-SET,geosite-apple,🍏 苹果服务
+  - RULE-SET,geoip-apple,🍏 苹果服务,no-resolve
   - RULE-SET,geosite-googlefcm,📢 谷歌FCM
   - RULE-SET,geoip-google,🔎 谷歌服务,no-resolve
   - RULE-SET,geosite-google,🔎 谷歌服务
