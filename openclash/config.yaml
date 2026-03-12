@@ -145,7 +145,7 @@ rules:
   - RULE-SET,geosite-google-cn,🐉 全球直连
   - RULE-SET,geosite-category-games@cn,🐉 全球直连
   - RULE-SET,geosite-steam@cn,🐉 全球直连
-  - RULE-SET,geosite-steam,🌐 默认节点
+  - RULE-SET,geosite-steam,🎮 Steam
   - RULE-SET,geosite-category-game-platforms-download,🐉 全球直连
   - RULE-SET,geosite-category-public-tracker,🐉 全球直连
   - RULE-SET,geosite-telegram,📱 Telegram
@@ -155,8 +155,6 @@ rules:
   - RULE-SET,geosite-bing,🤖 Copilot
   - RULE-SET,geosite-google-gemini,🤖 Gemini
   - RULE-SET,geosite-category-ai-!cn,🤖 AI服务
-  - RULE-SET,geosite-ai,🤖 AI服务
-  - RULE-SET,geosite-ai,🤖 AI服务
   - RULE-SET,geosite-github,👨🏿‍💻 GitHub
   - RULE-SET,youtube_domain,▶️ YouTube
   - RULE-SET,google_domain,🔎 谷歌服务
@@ -198,9 +196,9 @@ rule-providers:
   geosite-bing: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bing.mrs" }
   geosite-google-gemini: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.mrs" }
   geosite-category-ai-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
+  geosite-github: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
   youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
-  github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
   telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
   netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
   paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
