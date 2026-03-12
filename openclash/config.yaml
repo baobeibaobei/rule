@@ -164,10 +164,12 @@ rules:
   - RULE-SET,geosite-apple-tvplus,🎥 AppleTV+
   - RULE-SET,geosite-apple,🍏 苹果服务
   - RULE-SET,geosite-googlefcm,📢 谷歌FCM
+  - RULE-SET,geoip-google,🔎 谷歌服务,no-resolve
   - RULE-SET,geosite-google,🔎 谷歌服务
   - RULE-SET,geosite-onedrive,☁️ OneDrive
   - RULE-SET,geosite-microsoft,Ⓜ️ 微软服务
   - RULE-SET,geosite-tiktok,🎶 TikTok
+  - RULE-SET,geoip-netflix,🎥 Netflix,no-resolve
   - RULE-SET,geosite-netflix,🎥 Netflix
   - RULE-SET,geosite-disney,🎥 DisneyPlus
   - RULE-SET,geosite-hbo,🎥 HBO
@@ -181,8 +183,6 @@ rules:
   - RULE-SET,geosite-paypal,🗃️ PayPal
   - RULE-SET,geosite-gfw,🌐 默认节点
   - RULE-SET,geoip-apple,🍏 苹果服务
-  - RULE-SET,geoip-google,🔎 谷歌服务
-  - RULE-SET,geoip-netflix,🎥 Netflix
   - RULE-SET,geosite-geolocation-!cn,🌐 默认节点
   - RULE-SET,geosite-cn,🐉 全球直连
   - RULE-SET,geoip-cn,🐉 全球直连
