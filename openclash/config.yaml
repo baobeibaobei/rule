@@ -150,6 +150,7 @@ rules:
   - RULE-SET,geosite-steam,🎮 Steam
   - RULE-SET,geosite-category-game-platforms-download,🐉 全球直连
   - RULE-SET,geosite-category-public-tracker,🐉 全球直连
+  - RULE-SET,geoip-telegram,📱 Telegram,no-resolve
   - RULE-SET,geosite-telegram,📱 Telegram
   - RULE-SET,geosite-category-communication,📳 即时通讯
   - RULE-SET,geosite-category-social-media-!cn,👨‍👩‍👧‍👦 社交媒体
@@ -182,7 +183,6 @@ rules:
   - RULE-SET,geoip-apple,🍏 苹果服务
   - RULE-SET,geoip-google,🔎 谷歌服务
   - RULE-SET,geoip-netflix,🎥 Netflix
-  - RULE-SET,geoip-telegram,📱 Telegram
   - RULE-SET,geosite-geolocation-!cn,🌐 默认节点
   - RULE-SET,geosite-cn,🐉 全球直连
   - RULE-SET,geoip-cn,🐉 全球直连
