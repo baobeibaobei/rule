@@ -152,9 +152,9 @@ rules:
   - RULE-SET,geosite-category-communication,📳 即时通讯
   - RULE-SET,geosite-category-social-media-!cn,👨‍👩‍👧‍👦 社交媒体
   - RULE-SET,geosite-openai,🤖 ChatGPT
-  - RULE-SET,geosite-copilot,🤖 Copilot
-  - RULE-SET,geosite-gemini,🤖 Gemini
-  - RULE-SET,geosite-ai,🤖 AI服务
+  - RULE-SET,geosite-bing,🤖 Copilot
+  - RULE-SET,geosite-google-gemini,🤖 Gemini
+  - RULE-SET,geosite-category-ai-!cn,🤖 AI服务
   - RULE-SET,geosite-ai,🤖 AI服务
   - RULE-SET,geosite-ai,🤖 AI服务
   - RULE-SET,geosite-github,👨🏿‍💻 GitHub
@@ -194,7 +194,10 @@ rule-providers:
   geosite-telegram: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs" }
   geosite-category-communication: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-communication.mrs" }
   geosite-category-social-media-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-social-media-!cn.mrs" }
-  ai: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
+  geosite-openai: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.mrs" }
+  geosite-bing: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bing.mrs" }
+  geosite-google-gemini: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.mrs" }
+  geosite-category-ai-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
   youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
