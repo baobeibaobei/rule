@@ -162,7 +162,6 @@ rules:
   - RULE-SET,geositeyoutube,▶️ YouTube
   - RULE-SET,geosite-apple-tvplus,🎥 AppleTV+
   - RULE-SET,geosite-apple,🍏 苹果服务
-  - RULE-SET,geosite-onedrive,☁️ OneDrive
   - RULE-SET,geosite-google,🔎 谷歌服务
   - RULE-SET,geosite-onedrive,☁️ OneDrive
   - RULE-SET,geosite-microsoft,Ⓜ️ 微软服务
