@@ -156,7 +156,8 @@ rules:
   - RULE-SET,geosite-google-gemini,🤖 Gemini
   - RULE-SET,geosite-category-ai-!cn,🤖 AI服务
   - RULE-SET,geosite-github,👨🏿‍💻 GitHub
-  - RULE-SET,youtube_domain,▶️ YouTube
+  - RULE-SET,geositeyoutube,▶️ YouTube
+  - RULE-SET,geosite-apple-tvplus,🎥 AppleTV+
   - RULE-SET,google_domain,🔎 谷歌服务
   - RULE-SET,onedrive_domain,☁️ OneDrive
   - RULE-SET,microsoft_domain,Ⓜ️ 微软服务
@@ -197,7 +198,9 @@ rule-providers:
   geosite-google-gemini: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.mrs" }
   geosite-category-ai-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
   geosite-github: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
-  youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
+  geosite-youtube: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
+  geosite-apple-tvplus: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-tvplus.mrs"}
+  geosite-apple: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
   netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
