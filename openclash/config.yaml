@@ -179,7 +179,7 @@ rules:
   - RULE-SET,geosite-category-ecommerce,🛒 国外电商
   - RULE-SET,geosite-paypal,🗃️ PayPal
   - RULE-SET,geosite-gfw,🌐 默认节点
-  - RULE-SET,geoip-apple,🐉 全球直连
+  - RULE-SET,geoip-apple,🍏 苹果服务
   - RULE-SET,geoip-google,🔎 谷歌服务
   - RULE-SET,geoip-netflix,🎥 Netflix
   - RULE-SET,geoip-telegram,📱 Telegram
