@@ -162,10 +162,10 @@ rules:
   - RULE-SET,geosite-youtube,▶️ YouTube
   - RULE-SET,geosite-apple-tvplus,🎥 AppleTV+
   - RULE-SET,geosite-apple,🍏 苹果服务
+  - RULE-SET,geosite-googlefcm,📢 谷歌FCM
   - RULE-SET,geosite-google,🔎 谷歌服务
   - RULE-SET,geosite-onedrive,☁️ OneDrive
   - RULE-SET,geosite-microsoft,Ⓜ️ 微软服务
-  - RULE-SET,geosite-googlefcm,📢 谷歌FCM
   - RULE-SET,geosite-tiktok,🎶 TikTok
   - RULE-SET,geosite-netflix,🎥 Netflix
   - RULE-SET,geosite-disney,🎥 DisneyPlus
