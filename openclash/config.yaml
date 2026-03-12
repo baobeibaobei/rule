@@ -124,6 +124,7 @@ proxy-groups:
   - {name: Ⓜ️ 微软服务, type: select, proxies: [🐉 全球直连, 🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点]}
   - {name: 🎮 Steam, type: select, proxies: [🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点, 🐉 全球直连]}
   - {name: 🎮 游戏平台, type: select, proxies: [🐉 全球直连, 🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点]}
+  - {name: 🛜 测速工具, type: select, proxies: [🐉 全球直连, 🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点]}
   - {name: 🗃️ PayPal, type: select, proxies: [🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点, 🐉 全球直连]}
   - {name: 🏡 自定义直连, type: select, proxies: [🐉 全球直连, 🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点]}
   - {name: 🐟 漏网之鱼, type: select, proxies: [🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点, 🐉 全球直连]}
@@ -157,6 +158,7 @@ rules:
   - RULE-SET,geosite-google-gemini,🤖 Gemini
   - RULE-SET,geosite-category-ai-!cn,🤖 AI服务
   - RULE-SET,geosite-github,👨🏿‍💻 GitHub
+  - RULE-SET,geosite-ookla-speedtest,🛜 测速工具
   - RULE-SET,geositeyoutube,▶️ YouTube
   - RULE-SET,geosite-apple-tvplus,🎥 AppleTV+
   - RULE-SET,geosite-apple,🍏 苹果服务
@@ -175,14 +177,15 @@ rules:
   - RULE-SET,geosite-bahamut,📺 Bahamut
   - RULE-SET,geosite-category-games,🎮 游戏平台
   - RULE-SET,geosite-category-entertainment,🌎 国外媒体
-  - RULE-SET,paypal_domain,🗃️ PayPal
-  - RULE-SET,apple_ip,🐉 全球直连
-  - RULE-SET,google_ip,🔎 谷歌服务
-  - RULE-SET,netflix_ip,🎥 Netflix
-  - RULE-SET,telegram_ip,📱 Telegram
-  - RULE-SET,geolocation-!cn,🌐 默认节点
-  - RULE-SET,cn_domain,🐉 全球直连
-  - RULE-SET,cn_ip,🐉 全球直连
+  - RULE-SET,geosite-category-ecommerce,🛒 国外电商
+  - RULE-SET,geosite-paypal,🗃️ PayPal
+  - RULE-SET,geoip-apple,🐉 全球直连
+  - RULE-SET,geoip-google,🔎 谷歌服务
+  - RULE-SET,geoip-netflix,🎥 Netflix
+  - RULE-SET,geoip-telegram,📱 Telegram
+  - RULE-SET,geosite-geolocation-!cn,🌐 默认节点
+  - RULE-SET,geosite-cn,🐉 全球直连
+  - RULE-SET,geoip-cn,🐉 全球直连
   - MATCH,🐟 漏网之鱼
 
 # 规则集
@@ -226,19 +229,16 @@ rule-providers:
   geosite-bahamut: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bahamut.mrs"}
   geosite-category-games: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-games.mrs"}
   geosite-category-entertainment: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-entertainment.mrs"}
-  paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
-  
-  
-  apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
-  speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
-  
-  geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
-  cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  geosite-category-ecommerce: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ecommerce.mrs"}
+  geosite-paypal: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
+  geosite-ookla-speedtest: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
+  geosite-geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
+  geosite-cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
   
   geoip-private: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
-  cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
-  google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
-  telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
-  netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
-  apple_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
+  geoip-cn: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
+  geoip-google: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
+  geoip-telegram: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
+  geoip-netflix: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
+  geoip-apple: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
 
