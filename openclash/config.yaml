@@ -123,6 +123,7 @@ proxy-groups:
   - {name: ☁️ OneDrive, type: select, proxies: [🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点, 🐉 全球直连]}
   - {name: Ⓜ️ 微软服务, type: select, proxies: [🐉 全球直连, 🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点]}
   - {name: 🎮 Steam, type: select, proxies: [🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点, 🐉 全球直连]}
+  - {name: 🎮 游戏平台, type: select, proxies: [🐉 全球直连, 🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点]}
   - {name: 🗃️ PayPal, type: select, proxies: [🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点, 🐉 全球直连]}
   - {name: 🏡 自定义直连, type: select, proxies: [🐉 全球直连, 🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点]}
   - {name: 🐟 漏网之鱼, type: select, proxies: [🌐 默认节点, 🪄 手动选择, ♻️ 自动选择, 🇭🇰 香港节点, 🇼🇸 台湾节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇺🇲 美国节点, 🇨🇦 加拿大节点, 🇬🇧 英国节点, 🐉 全球直连]}
@@ -158,12 +159,22 @@ rules:
   - RULE-SET,geosite-github,👨🏿‍💻 GitHub
   - RULE-SET,geositeyoutube,▶️ YouTube
   - RULE-SET,geosite-apple-tvplus,🎥 AppleTV+
-  - RULE-SET,google_domain,🔎 谷歌服务
-  - RULE-SET,onedrive_domain,☁️ OneDrive
-  - RULE-SET,microsoft_domain,Ⓜ️ 微软服务
-  - RULE-SET,apple_domain,🐉 全球直连
-  - RULE-SET,tiktok_domain,🎶 TikTok
-  - RULE-SET,netflix_domain,🎥 Netflix
+  - RULE-SET,geosite-apple,🍏 苹果服务
+  - RULE-SET,geosite-onedrive,☁️ OneDrive
+  - RULE-SET,geosite-google,🔎 谷歌服务
+  - RULE-SET,geosite-onedrive,☁️ OneDrive
+  - RULE-SET,geosite-microsoft,Ⓜ️ 微软服务
+  - RULE-SET,geosite-googlefcm,📢 谷歌FCM
+  - RULE-SET,geosite-tiktok,🎶 TikTok
+  - RULE-SET,geosite-netflix,🎥 Netflix
+  - RULE-SET,geosite-disney,🎥 DisneyPlus
+  - RULE-SET,geosite-hbo,🎥 HBO
+  - RULE-SET,geosite-primevideo,🎥 PrimeVideo
+  - RULE-SET,geosite-category-emby,🎥 Emby
+  - RULE-SET,geosite-spotify,🎧 Spotify
+  - RULE-SET,geosite-bahamut,📺 Bahamut
+  - RULE-SET,geosite-category-games,🎮 游戏平台
+  - RULE-SET,geosite-category-entertainment,🌎 国外媒体
   - RULE-SET,paypal_domain,🗃️ PayPal
   - RULE-SET,apple_ip,🐉 全球直连
   - RULE-SET,google_ip,🔎 谷歌服务
@@ -201,15 +212,26 @@ rule-providers:
   geosite-youtube: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
   geosite-apple-tvplus: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-tvplus.mrs"}
   geosite-apple: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
-  google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
-  telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
-  netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
+  geosite-onedrive: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
+  geosite-microsoft: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
+  geosite-googlefcm: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.mrs"}
+  geosite-google: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
+  geosite-tiktok: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
+  geosite-netflix: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
+  geosite-disney: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/disney.mrs"}
+  geosite-hbo: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/hbo.mrs"}
+  geosite-primevideo: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/primevideo.mrs"}
+  geosite-category-emby: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-emby.mrs"}
+  geosite-spotify: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs"}
+  geosite-bahamut: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bahamut.mrs"}
+  geosite-category-games: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-games.mrs"}
+  geosite-category-entertainment: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-entertainment.mrs"}
   paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
-  onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
-  microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
+  
+  
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
-  tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
+  
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
   
