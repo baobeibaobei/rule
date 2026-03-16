@@ -85,7 +85,8 @@ dns:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
   direct-nameserver:
-    - 192.168.50.7:5553
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
   nameserver:
     - 192.168.50.7:5553
   fake-ip-filter:
