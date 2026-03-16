@@ -87,7 +87,7 @@ dns:
   direct-nameserver:
     - 192.168.50.7:5553
   nameserver:
-    - https://1.1.1.1/dns-query
+    - 192.168.50.7:5553
   fake-ip-filter:
     - "rule-set:fakeipfilter_domain"
  
