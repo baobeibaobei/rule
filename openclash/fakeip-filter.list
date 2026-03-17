@@ -9,6 +9,35 @@
 *.local
 *.home.arpa
 *.direct
+cable.auth.com
+network-test.debian.org
+detectportal.firefox.com
+resolver1.opendns.com
+global.turn.twilio.com
+global.stun.twilio.com
+app.yinxiang.com
+injections.adguard.org
+localhost.*.weixin.qq.com
+*.blzstatic.cn
+*.cmpassport.com
+id6.me
+open.e.189.cn
+opencloud.wostore.cn
+id.mail.wo.cn
+mdn.open.wo.cn
+hmrz.wo.cn
+nishub1.10010.com
+enrichgw.10010.com
+*.wosms.cn
+*.jegotrip.com.cn
+*.icitymobile.mobi
+*.pingan.com.cn
+*.cmbchina.com
+*.10099.com.cn
+*.microdone.cn
+PDC._msDCS.*.*
+DC._msDCS.*.*
+GC._msDCS.*.*
 #放行NTP服务
 time.*.com
 time.*.gov
@@ -70,6 +99,8 @@ music.migu.cn
 #QQ登录
 localhost.ptlogin2.qq.com
 localhost.sec.qq.com
++.qq.com
++.tencent.com
 #微信登录
 localhost.*.weixin.qq.com
 +.kk-rays.com
@@ -80,6 +111,8 @@ localhost.*.weixin.qq.com
 +.srv.nintendo.net
 *.n.n.srv.nintendo.net
 +.cdn.nintendo.net
+#Sony PlayStation
++.stun.playstation.net
 #Microsoft Xbox
 xbox.*.*.microsoft.com
 *.*.xboxlive.com
@@ -95,6 +128,8 @@ xnotify.xboxlive.com
 #Golang
 proxy.golang.org
 #STUN
+stun.*.*
+stun.*.*.*
 +.stun.*.*
 +.stun.*.*.*
 +.stun.*.*.*.*
@@ -114,7 +149,10 @@ swcdn.apple.com
 swdist.apple.com
 #Google
 lens.l.google.com
+stun.l.google.com
 na.b.g-tun.com
+#Netflix
++.nflxvideo.net
 #FinalFantasy XIV Worldwide Server & CN Server
 *.square-enix.com
 *.finalfantasyxiv.com
