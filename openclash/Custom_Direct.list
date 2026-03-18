@@ -1,5 +1,8 @@
 # 自定义直连列表
 
+# BT端口
+DST-PORT,50000-59999
+DST-PORT,6881-6999
 # 域名后缀匹配
 DOMAIN-SUFFIX,freetv.top
 DOMAIN-SUFFIX,lmhcloud.com
