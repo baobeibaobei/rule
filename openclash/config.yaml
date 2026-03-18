@@ -27,7 +27,7 @@ tproxy-port: 7895
 
 mode: rule
 log-level: warning
-ipv6: false
+ipv6: true
 allow-lan: true
 bind-address: "*"
 unified-delay: true
@@ -83,7 +83,7 @@ tun:
 # DNS模块
 dns:
   enable: true
-  ipv6: false
+  ipv6: true
   cache-algorithm: arc
   listen: 0.0.0.0:7874
   respect-rules: true
