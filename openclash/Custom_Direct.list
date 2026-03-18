@@ -9,3 +9,8 @@ DOMAIN-SUFFIX,kaogujia.com
 DOMAIN-SUFFIX,yaya520.top
 DOMAIN-SUFFIX,ottiptv.cc
 DOMAIN-SUFFIX,szshuaersi.com
+
+# 非标端口
+DST-PORT,1-79
+DST-PORT,81-442
+DST-PORT,444-65535
