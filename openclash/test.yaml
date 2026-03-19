@@ -122,6 +122,7 @@ proxy-groups:
   - {name: 美国节点, type: select, include-all: true, filter: '(🇺🇸|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|纽约|纽纽|亚特兰大|迈阿密|华盛顿|United States|UnitedStates|UNITED STATES|USA|America|AMERICA|JFK|EWR|IAD|ATL|ORD|MIA|NYC|LAX|SFO|SEA|DFW|SJC)', icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-um.png}
   - {name: 加拿大节点, type: select, include-all: true, filter: '(🇨🇦|加拿大|Canada|CANADA|CAN|渥太华|温哥华|卡尔加里|蒙特利尔|Montreal|YVR|YYZ|YUL)', icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-ca.png}
   - {name: 英国节点, type: select, include-all: true, filter: '(🇬🇧|英国|Britain|United Kingdom|UNITED KINGDOM|England|伦敦|曼彻斯特|Manchester|GBR|LHR|MAN)', icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-gb.png}
+  - {name: 全球直连, type: select, proxies: [DIRECT], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-global-direct.png}
 
 rules:
   - RULE-SET,custom_direct,全球直连
