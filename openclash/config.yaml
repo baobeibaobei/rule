@@ -128,41 +128,41 @@ rules:
   - RULE-SET,custom_direct,全球直连
   - RULE-SET,geoip-private,全球直连,no-resolve
   - RULE-SET,geosite-private,全球直连
-  - RULE-SET,geosite-google-cn,全球直连
-  - RULE-SET,geosite-category-games@cn,全球直连
-  - RULE-SET,geosite-steam@cn,全球直连
-  - RULE-SET,geosite-steam,Steam
-  - RULE-SET,geosite-category-game-platforms-download,全球直连
+  - RULE-SET,geosite-ookla-speedtest,测速工具
   - RULE-SET,geosite-category-public-tracker,全球直连
-  - RULE-SET,geoip-telegram,Telegram,no-resolve
-  - RULE-SET,geosite-telegram,Telegram
-  - RULE-SET,geosite-category-communication,即时通讯
-  - RULE-SET,geosite-category-social-media-!cn,社交媒体
   - RULE-SET,geosite-openai,ChatGPT
   - RULE-SET,geosite-bing,Copilot
   - RULE-SET,geosite-google-gemini,Gemini
   - RULE-SET,geosite-category-ai-!cn,AI服务
-  - RULE-SET,geosite-github,GitHub
-  - RULE-SET,geosite-ookla-speedtest,测速工具
-  - RULE-SET,geosite-youtube,YouTube
-  - RULE-SET,geosite-apple-tvplus,AppleTV+
-  - RULE-SET,geosite-apple,苹果服务
-  - RULE-SET,geoip-apple,苹果服务,no-resolve
-  - RULE-SET,geosite-googlefcm,谷歌FCM
-  - RULE-SET,geoip-google,谷歌服务,no-resolve
-  - RULE-SET,geosite-google,谷歌服务
-  - RULE-SET,geosite-onedrive,OneDrive
-  - RULE-SET,geosite-microsoft,微软服务
+  - RULE-SET,geosite-telegram,Telegram
+  - RULE-SET,geoip-telegram,Telegram,no-resolve
   - RULE-SET,geosite-tiktok,TikTok
-  - RULE-SET,geoip-netflix,Netflix,no-resolve
   - RULE-SET,geosite-netflix,Netflix
+  - RULE-SET,geoip-netflix,Netflix,no-resolve
   - RULE-SET,geosite-disney,DisneyPlus
   - RULE-SET,geosite-hbo,HBO
   - RULE-SET,geosite-primevideo,PrimeVideo
-  - RULE-SET,geosite-category-emby,Emby
-  - RULE-SET,geosite-spotify,Spotify
+  - RULE-SET,geosite-apple-tvplus,AppleTV+
   - RULE-SET,geosite-bahamut,Bahamut
+  - RULE-SET,geosite-spotify,Spotify
+  - RULE-SET,geosite-category-emby,Emby
+  - RULE-SET,geosite-steam@cn,全球直连
+  - RULE-SET,geosite-category-games@cn,全球直连
+  - RULE-SET,geosite-category-game-platforms-download,全球直连
+  - RULE-SET,geosite-steam,Steam
   - RULE-SET,geosite-category-games,游戏平台
+  - RULE-SET,geosite-github,GitHub
+  - RULE-SET,geosite-youtube,YouTube
+  - RULE-SET,geosite-google-cn,全球直连
+  - RULE-SET,geosite-googlefcm,谷歌FCM
+  - RULE-SET,geosite-google,谷歌服务
+  - RULE-SET,geoip-google,谷歌服务,no-resolve
+  - RULE-SET,geosite-apple,苹果服务
+  - RULE-SET,geoip-apple,苹果服务,no-resolve
+  - RULE-SET,geosite-onedrive,OneDrive
+  - RULE-SET,geosite-microsoft,微软服务
+  - RULE-SET,geosite-category-communication,即时通讯
+  - RULE-SET,geosite-category-social-media-!cn,社交媒体
   - RULE-SET,geosite-category-entertainment,国外媒体
   - RULE-SET,geosite-category-ecommerce,国外电商
   - RULE-SET,geosite-paypal,PayPal
