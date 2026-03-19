@@ -128,7 +128,6 @@ rules:
   - RULE-SET,custom_direct,全球直连
   - RULE-SET,geoip-private,全球直连,no-resolve
   - RULE-SET,geosite-private,全球直连
-  - RULE-SET,proxylite,默认节点
   - RULE-SET,geosite-google-cn,全球直连
   - RULE-SET,geosite-category-games@cn,全球直连
   - RULE-SET,geosite-steam@cn,全球直连
@@ -180,7 +179,6 @@ rule-providers:
   fakeip-filter: {<<: *class, url: "https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/fakeip-filter.list"}
   geosite-private: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
   custom_direct: { <<: *class, url: "https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/Custom_Direct.list"}
-  proxylite: { <<: *class, url: "https://raw.githubusercontent.com/qichiyuhub/rule/main/proxy.list"}
   geosite-google-cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-cn.mrs"}
   geosite-category-games@cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-games@cn.mrs"}
   geosite-steam@cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.mrs"}
