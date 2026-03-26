@@ -82,7 +82,7 @@ dns:
     - "rule-set:domain-cn"
 
 proxy-groups:
-  - {name: 默认代理, type: select, proxies: [香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 手动选择, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-clashmeta.png}
+  - {name: 默认代理, type: select, proxies: [香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 手动选择, 自动选择, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-clashmeta.png}
   - {name: 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(官网|到期时间|剩余|流量|套餐|免费|订阅|GB|Expire Date|Traffic|ExpireDate)).)*$", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-auto-select.png}
   - {name: 手动选择, type: select, include-all: true, filter: "^((?!(官网|到期时间|剩余|流量|套餐|免费|订阅|GB|Expire Date|Traffic|ExpireDate)).)*$", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-select.png}
   - {name: Telegram, type: select, proxies: [默认代理, 手动选择, 自动选择, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-telegram.png}
