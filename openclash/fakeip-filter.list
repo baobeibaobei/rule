@@ -197,6 +197,6 @@ ps.res.netease.com
 #ddns
 +.dynv6.net
 #BT
-router.bittorrent.com
-dht.transmissionbt.com
-dht.libtorrent.org
++.bittorrent.com
++.transmissionbt.com
++.libtorrent.org
