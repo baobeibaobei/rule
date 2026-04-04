@@ -126,14 +126,14 @@ proxy-groups:
   - {name: PayPal, type: select, proxies: [默认代理, 手动选择, 自动选择, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-paypal.png}
   - {name: 自定义直连, type: select, proxies: [全球直连, 默认代理, 手动选择, 自动选择, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-direct.png}
   - {name: 漏网之鱼, type: select, proxies: [默认代理, 手动选择, 自动选择, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-fish.png}
-  - {name: 香港节点, type: select, include-all: true, filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-hk.png}
-  - {name: 台湾节点, type: select, include-all: true, filter: "(?i)🇨🇳|🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-cn.png}
-  - {name: 新加坡节点, type: select, include-all: true, filter: "(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-sg.png}
-  - {name: 日本节点, type: select, include-all: true, filter: "(?i)🇯🇵|日本|东京|(\b(JP|Japan)\b)", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-jp.png}
-  - {name: 韩国节点, type: select, include-all: true, filter: "(?i)🇰🇷|韩国|首尔|(\b(KR|Korea)\b)", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-kr.png}
-  - {name: 美国节点, type: select, include-all: true, filter: "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-um.png}
-  - {name: 加拿大节点, type: select, include-all: true, filter: "(?i)🇨🇦|加拿大|(\b(CA|Canada)\b)", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-ca.png}
-  - {name: 英国节点, type: select, include-all: true, filter: "(?i)🇬🇧|英国|伦敦|(\b(UK|United Kingdom|Britain)\b)", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-gb.png}
+  - {name: 香港节点, type: select, include-all: true, filter: "(?i)🇭🇰|广港|香港|HK|Hong Kong|HongKong", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-hk.png}
+  - {name: 台湾节点, type: select, include-all: true, filter: "(?i)🇨🇳|🇹🇼|广台|台湾|台灣|TW|Tai Wan|TaiWan|Taiwan", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-cn.png}
+  - {name: 新加坡节点, type: select, include-all: true, filter: "(?i)🇸🇬|广新|新加坡|SG|坡|狮城|Singapore", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-sg.png}
+  - {name: 日本节点, type: select, include-all: true, filter: "(?i)🇯🇵|广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|Japan", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-jp.png}
+  - {name: 韩国节点, type: select, include-all: true, filter: "(?i)🇰🇷|韩国|韓國|首尔|首爾|KR|Korea|South Korea|ROK", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-kr.png}
+  - {name: 美国节点, type: select, include-all: true, filter: "(?i)🇺🇸|广美|US|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-um.png}
+  - {name: 加拿大节点, type: select, include-all: true, filter: "(?i)🇨🇦|加拿大|CA|Canada|蒙特利尔|温哥华|多伦多", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-ca.png}
+  - {name: 英国节点, type: select, include-all: true, filter: "(?i)🇬🇧|英国|英國|UK|United Kingdom|London|伦敦", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-gb.png}
   - {name: 全球直连, type: select, proxies: [DIRECT], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-global-direct.png}
 
 rules:
