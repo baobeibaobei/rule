@@ -1,7 +1,7 @@
 proxy-providers:
   Airport1:
     url: "订阅链接"
-    输入: http
+    type: http
     interval: 86400
     health-check:
       enable: true
