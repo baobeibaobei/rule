@@ -87,7 +87,6 @@ dns:
     - https://8.8.8.8/dns-query#RULES&ecs=223.5.5.0/24
   fake-ip-filter:
     - "rule-set:fakeip-filter"
-    - "rule-set:domain-cn"
 
 proxy-groups:
   - {name: 默认代理, type: select, proxies: [香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 手动选择, 自动选择, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-clashmeta.png}
