@@ -84,7 +84,7 @@ dns:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
   nameserver:
-    - https://8.8.8.8/dns-query#RULES&ecs=223.5.5.0/24
+    - https://1.1.1.1/dns-query#RULES&ecs=223.5.5.0/24
   fake-ip-filter:
     - "rule-set:fakeip-filter"
 
