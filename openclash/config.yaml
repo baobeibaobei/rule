@@ -88,6 +88,7 @@ dns:
   fake-ip-filter:
     - "rule-set:fakeip-filter"
 
+
 proxy-groups:
   - {name: 默认代理, type: select, proxies: [香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 手动选择, 自动选择, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-clashmeta.png}
   - {name: 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(官网|到期时间|剩余|流量|套餐|免费|订阅|GB|Expire Date|Traffic|ExpireDate)).)*$", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-auto-select.png}
@@ -100,6 +101,7 @@ proxy-groups:
   - {name: Copilot, type: select, proxies: [新加坡节点, 默认代理, 手动选择, 自动选择, 香港节点, 台湾节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-copilot.png}
   - {name: Gemini, type: select, proxies: [新加坡节点, 默认代理, 手动选择, 自动选择, 香港节点, 台湾节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-gemini.png}
   - {name: AI服务, type: select, proxies: [美国节点,默认代理, 手动选择, 自动选择, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点,  加拿大节点, 英国节点, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-ai.png}
+  - {name: 加密货币, type: select, proxies: [新加坡节点, 默认代理, 手动选择, 自动选择, 香港节点, 台湾节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-cryptocurrency.png}
   - {name: TikTok, type: select, proxies: [手动选择, 默认代理, 自动选择, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-tiktok.png}
   - {name: YouTube, type: select, proxies: [默认代理, 手动选择, 自动选择, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-youtube.png}
   - {name: Netflix, type: select, proxies: [手动选择, 默认代理, 自动选择, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-netflix.png}
@@ -138,42 +140,44 @@ rules:
   - RULE-SET,domain-private,全球直连
   - RULE-SET,ip-private,全球直连,no-resolve
   - RULE-SET,domain-speedtest,测速工具
+  - RULE-SET,domain-synology,全球直连
   - RULE-SET,domain-public-tracker,全球直连
+  - RULE-SET,domain-games@cn,全球直连
+  - RULE-SET,domain-gamedownload,全球直连
   - RULE-SET,domain-openai,ChatGPT
   - RULE-SET,domain-bing,Copilot
   - RULE-SET,domain-gemini,Gemini
   - RULE-SET,domain-ai-!cn,AI服务
+  - RULE-SET,domain-paypal,PayPal
   - RULE-SET,domain-telegram,Telegram
   - RULE-SET,ip-telegram,Telegram,no-resolve
+  - RULE-SET,domain-communication,即时通讯
+  - RULE-SET,domain-social-media-!cn,社交媒体
+  - RULE-SET,domain-github,GitHub
+  - RULE-SET,domain-steam@cn,全球直连
+  - RULE-SET,domain-steam,Steam
+  - RULE-SET,domain-youtube,YouTube
+  - RULE-SET,domain-apple-tvplus,AppleTV+
+  - RULE-SET,domain-apple,苹果服务
+  - RULE-SET,ip-apple,苹果服务,no-resolve
+  - RULE-SET,domain-onedrive,OneDrive
+  - RULE-SET,domain-microsoft,微软服务
+  - RULE-SET,domain-googlefcm,谷歌FCM
+  - RULE-SET,domain-google,谷歌服务
+  - RULE-SET,ip-google,谷歌服务,no-resolve
   - RULE-SET,domain-tiktok,TikTok
   - RULE-SET,domain-netflix,Netflix
   - RULE-SET,ip-netflix,Netflix,no-resolve
   - RULE-SET,domain-disney,DisneyPlus
   - RULE-SET,domain-hbo,HBO
   - RULE-SET,domain-primevideo,PrimeVideo
-  - RULE-SET,domain-apple-tvplus,AppleTV+
-  - RULE-SET,domain-bahamut,Bahamut
-  - RULE-SET,domain-spotify,Spotify
   - RULE-SET,domain-emby,Emby
-  - RULE-SET,domain-steam@cn,全球直连
-  - RULE-SET,domain-games@cn,全球直连
-  - RULE-SET,domain-gamedownload,全球直连
-  - RULE-SET,domain-steam,Steam
+  - RULE-SET,domain-spotify,Spotify
+  - RULE-SET,domain-bahamut,Bahamut
   - RULE-SET,domain-games,游戏平台
-  - RULE-SET,domain-github,GitHub
-  - RULE-SET,domain-youtube,YouTube
-  - RULE-SET,domain-googlefcm,谷歌FCM
-  - RULE-SET,domain-google,谷歌服务
-  - RULE-SET,ip-google,谷歌服务,no-resolve
-  - RULE-SET,domain-apple,苹果服务
-  - RULE-SET,ip-apple,苹果服务,no-resolve
-  - RULE-SET,domain-onedrive,OneDrive
-  - RULE-SET,domain-microsoft,微软服务
-  - RULE-SET,domain-communication,即时通讯
-  - RULE-SET,domain-social-media-!cn,社交媒体
   - RULE-SET,domain-entertainment,国外媒体
   - RULE-SET,domain-ecommerce,国外电商
-  - RULE-SET,domain-paypal,PayPal
+  - RULE-SET,domain-cryptocurrency,加密货币
   - RULE-SET,domain-geolocation-!cn,默认代理
   - RULE-SET,domain-cn,全球直连
   - RULE-SET,ip-cn,全球直连
@@ -186,22 +190,25 @@ rule-anchor:
   class-yaml: &class-yaml {type: http, interval: 86400, behavior: classical, format: yaml}
 
 rule-providers: 
-  fakeip-filter: {<<: *class-text, url: "https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/fakeip-filter.list"}
   custom_direct: { <<: *class-text, url: "https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/Custom_Direct.list"}
+  fakeip-filter: {<<: *class-text, url: "https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/fakeip-filter.list"}
   domain-private: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
-  domain-games@cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-games@cn.mrs"}
-  domain-steam@cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.mrs"}
-  domain-steam: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.mrs"}
-  domain-gamedownload: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-game-platforms-download.mrs"}
+  domain-speedtest: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
+  domain-synology: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/synology.mrs"}
   domain-public-tracker: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-public-tracker.mrs" }
-  domain-telegram: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs" }
-  domain-communication: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-communication.mrs" }
-  domain-social-media-!cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-social-media-!cn.mrs" }
+  domain-games@cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-games@cn.mrs"}
+  domain-gamedownload: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-game-platforms-download.mrs"}
   domain-openai: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.mrs" }
   domain-bing: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bing.mrs" }
   domain-gemini: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.mrs" }
   domain-ai-!cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
+  domain-paypal: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
+  domain-telegram: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs" }
+  domain-communication: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-communication.mrs" }
+  domain-social-media-!cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-social-media-!cn.mrs" }
   domain-github: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
+  domain-steam@cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.mrs"}
+  domain-steam: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.mrs"}
   domain-youtube: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
   domain-apple-tvplus: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-tvplus.mrs"}
   domain-apple: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
@@ -220,14 +227,13 @@ rule-providers:
   domain-games: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-games.mrs"}
   domain-entertainment: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-entertainment.mrs"}
   domain-ecommerce: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ecommerce.mrs"}
-  domain-paypal: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
-  domain-speedtest: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
+  domain-cryptocurrency: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-cryptocurrency.mrs"}
   domain-geolocation-!cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   domain-cn: { <<: *domain-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
   
   ip-private: {<<: *ip-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
-  ip-cn: { <<: *ip-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
-  ip-google: { <<: *ip-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
   ip-telegram: { <<: *ip-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
-  ip-netflix: { <<: *ip-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
   ip-apple: {<<: *ip-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
+  ip-google: { <<: *ip-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
+  ip-netflix: { <<: *ip-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
+  ip-cn: { <<: *ip-mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
