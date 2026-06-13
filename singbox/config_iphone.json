@@ -35,7 +35,7 @@
             {"rule_set": "geoip-cn"}
           ],
           "server": "proxy_dns",
-          "client_subnet": "114.114.114.114/24"
+          "client_subnet": "223.5.5.0/24"
         }
     ],
     "final": "proxy_dns",
