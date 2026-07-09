@@ -137,7 +137,7 @@
         {"tag": "geosite-entertainment","type": "remote","format": "binary","url": "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-entertainment.srs","download_detour": "🚀 默认代理"},
         {"tag": "geosite-ecommerce","type": "remote","format": "binary","url": "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ecommerce.srs","download_detour": "🚀 默认代理"},
         {"tag": "geosite-cryptocurrency","type": "remote","format": "binary","url": "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-cryptocurrency.srs","download_detour": "🚀 默认代理"},
-        {"tag": "geosite-!cn","type": "remote","format": "binary","url": "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geolocation-!cn.srs","download_detour": "🚀 默认代理"},
+        {"tag": "geosite-!cn","type": "remote","format": "binary","url": "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs","download_detour": "🚀 默认代理"},
         {"tag": "geosite-cn","type": "remote","format": "binary","url": "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs","download_detour": "🚀 默认代理"},
         {"tag": "geoip-private","type": "remote","format": "binary","url": "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/private.srs","download_detour": "🚀 默认代理"},
         {"tag": "geoip-telegram","type": "remote","format": "binary","url": "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/telegram.srs","download_detour": "🚀 默认代理"},
