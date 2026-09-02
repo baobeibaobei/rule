@@ -21,8 +21,8 @@ mode: rule
 unified-delay: true
 tcp-concurrent: true
 log-level: warning
-keep-alive-idle: 600
-keep-alive-interval: 15
+keep-alive-idle: 60
+keep-alive-interval: 60
 profile:
   store-selected: true
   store-fake-ip: true
@@ -32,6 +32,9 @@ secret: ""
 external-ui: ui
 external-ui-name: zashboard
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+
+experimental:
+  quic-go-disable-gso: true
 
 sniffer:
   enable: true
@@ -58,41 +61,41 @@ sniffer:
   parse-pure-ip: true
 
 tun:
-  enable: true  #system/gvisor/mixed
-  stack: mixed
-  dns-hijack: ["any:53", "tcp://any:53"]
-  auto-route: true
-  auto-redirect: false
+  enable: false
   auto-detect-interface: true
+  auto-route: true
+  strict-route: true
+  auto-redirect: true
+  device: mihomo
+  disable-icmp-forwarding: true
+  dns-hijack:
+    - 0.0.0.0:53
+  stack: mixed
 
 dns:
   enable: true
-  cache-algorithm: arc
+  ipv6: false
   listen: 0.0.0.0:7874
-  ipv6: true
-  respect-rules: true
+  cache-algorithm: arc
+  use-hosts: true
+  respect-rules: false
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fdfe:dcba:9876::1/64
-  fake-ip-filter-mode: blacklist
-  default-nameserver:
-    - https://223.5.5.5/dns-query
-  proxy-server-nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
-  direct-nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
-  nameserver:
-    - https://1.1.1.1/dns-query#RULES&ecs=223.5.5.0/24
-  fake-ip-filter:
-    - "rule-set:fakeip-filter"
+  fake-ip-filter: ['rule-set:domain-private', 'rule-set:fakeip-filter', 'rule-set:domain-cn']
+  default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+  proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
+  nameserver: ['https://dns.google/dns-query#DNS', 'https://doh.opendns.com/dns-query#DNS', 'https://cloudflare-dns.com/dns-query#DNS']
+  nameserver-policy:
+    'rule-set:domain-cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+  direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
 
 
 proxy-groups:
   - {name: 默认代理, type: select, proxies: [香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 手动选择, 自动选择, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-clashmeta.png}
   - {name: 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(官网|到期时间|剩余|流量|套餐|免费|订阅|GB|Expire Date|Traffic|ExpireDate)).)*$", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-auto-select.png}
   - {name: 手动选择, type: select, include-all: true, filter: "^((?!(官网|到期时间|剩余|流量|套餐|免费|订阅|GB|Expire Date|Traffic|ExpireDate)).)*$", icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-select.png}
+  - {name: DNS, type: select, proxies: [自动选择, 默认代理, 手动选择, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 全球直连], icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cellular.png }
   - {name: Telegram, type: select, proxies: [默认代理, 手动选择, 自动选择, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-telegram.png}
   - {name: 即时通讯, type: select, proxies: [默认代理, 手动选择, 自动选择, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-messaging.png}
   - {name: 社交媒体, type: select, proxies: [默认代理, 手动选择, 自动选择, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 加拿大节点, 英国节点, 全球直连], icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-social-media.png}
