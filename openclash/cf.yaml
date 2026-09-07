@@ -15,11 +15,12 @@ base-filter-au: &base-filter-au { filter: '(?i)(澳大利亚|澳洲|🇦🇺|悉
 base-filter-yxym: &base-filter-yxym { filter: '(?i)(优选)', icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-yxym.png }
 base-filter-other: &base-filter-other { exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|Korea|KOR|马来西亚|🇲🇾|(?<![A-Za-z])MY(?![A-Za-z])|Malaysia|MYS|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|加|加拿大|🇨🇦|(?<![A-Za-z])CA(?![A-Za-z])|Canada|CAN|英|🇬🇧|(?<![A-Za-z])(UK|GB)(?![A-Za-z])|Britain|United Kingdom|GBR|德国|🇩🇪|法兰克福|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER|澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS)', icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-other.png }
 #DNS代理锚点
-base-dns: &base-dns { type: select, proxies: [自动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 加拿大, 英国, 德国, 澳大利亚, 台湾省, 其他节点] }
+base-dns: &base-dns { type: select, proxies: [默认代理, 自动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 加拿大, 英国, 德国, 澳大利亚, 台湾省, 其他节点] }
 #默认策略锚点
 urltest-first: &urltest-first { type: select, proxies: [自动选择, DIRECT, 手动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 加拿大, 英国, 德国, 澳大利亚, 台湾省, 其他节点] }
-direct-first: &direct-first { type: select, proxies: [DIRECT, 自动选择, 手动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 加拿大, 英国, 德国, 澳大利亚, 台湾省, 其他节点] }
-reject-first: &reject-first { type: select, proxies: [REJECT, 自动选择, 手动选择, DIRECT] }
+direct-first: &direct-first { type: select, proxies: [DIRECT, 默认代理, 自动选择, 手动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 加拿大, 英国, 德国, 澳大利亚, 台湾省, 其他节点] }
+default-first: &default-first { type: select, proxies: [默认代理, 自动选择, DIRECT, 手动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 加拿大, 英国, 德国, 澳大利亚, 台湾省, 其他节点] }
+reject-first: &reject-first { type: select, proxies: [REJECT, 默认代理, 自动选择, 手动选择, DIRECT] }
 #基础策略锚点
 base-urltest: &base-urltest { type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: https://www.gstatic.com/generate_204 }
 base-loadbalance: &base-loadbalance { type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: https://www.gstatic.com/generate_204 }
@@ -108,34 +109,34 @@ ntp:
 proxy-groups:
   - { name: 默认代理, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-clashmeta.png }
   - { name: 全球直连, <<: *direct-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-global-direct.png }
-  - { name: 漏网之鱼, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-fish.png }
+  - { name: 漏网之鱼, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-fish.png }
   - { name: 自动选择, <<: *base-urltest, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-auto-select.png }
   - { name: 手动选择, type: select, include-all: true, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-select.png }
   - { name: 负载均衡, <<: *base-loadbalance, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-loadbalance.png }
   - { name: 广告拦截, <<: *reject-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-ad.png }
 
   - { name: DNS, <<: *base-dns, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-dns.png }
-  - { name: Speedtest, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-speedtest.png }
+  - { name: Speedtest, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-speedtest.png }
   - { name: Cloudflare, <<: *direct-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-cloudflare.png }
-  - { name: Telegram, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-telegram.png }
-  - { name: Google, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-google.png }
-  - { name: GoogleFCM, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-notifications.png }
-  - { name: GitHub, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-github.png }
-  - { name: Youtube, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-youtube.png }
-  - { name: ChatGPT, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-chatgpt.png }
-  - { name: Copilot, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-copilot.png }
-  - { name: Gemini, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-gemini.png }
-  - { name: AI代理, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-ai.png }
+  - { name: Telegram, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-telegram.png }
+  - { name: Google, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-google.png }
+  - { name: GoogleFCM, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-notifications.png }
+  - { name: GitHub, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-github.png }
+  - { name: Youtube, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-youtube.png }
+  - { name: ChatGPT, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-chatgpt.png }
+  - { name: Copilot, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-copilot.png }
+  - { name: Gemini, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-gemini.png }
+  - { name: AI代理, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-ai.png }
   - { name: AI直连, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Magic.png }
-  - { name: PayPal, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-paypal.png }
-  - { name: Tiktok, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-tiktok.png }
-  - { name: Netflix, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-netflix.png }
-  - { name: DisneyPlus, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-disneyplus.png }
-  - { name: HBO, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-hbo.png }
-  - { name: PrimeVideo, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-primevideo.png }
-  - { name: Emby, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-emby.png }
-  - { name: Bahamut, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-bahamut.png }
-  - { name: 加密货币, <<: *urltest-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-cryptocurrency.png }
+  - { name: PayPal, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-paypal.png }
+  - { name: Tiktok, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-tiktok.png }
+  - { name: Netflix, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-netflix.png }
+  - { name: DisneyPlus, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-disneyplus.png }
+  - { name: HBO, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-hbo.png }
+  - { name: PrimeVideo, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-primevideo.png }
+  - { name: Emby, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-emby.png }
+  - { name: Bahamut, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-bahamut.png }
+  - { name: 加密货币, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-cryptocurrency.png }
 
   - { name: CF优选, <<: *base-filter-yxym, type: select, include-all: true, proxies: [CF优选-自动] }
   - { name: 美国, <<: *base-filter-us, type: select, include-all: true, proxies: [美国-自动] }
