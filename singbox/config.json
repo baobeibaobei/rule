@@ -116,8 +116,8 @@
         "rule_set": [
             { "tag": "category-ads-all", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ads-all.srs", "update_interval": "24h" },
             { "tag": "custom_direct", "type": "remote", "format": "source", "url": "https://github.com/baobeibaobei/rule/raw/refs/heads/main/singbox/custom_direct.json", "update_interval": "24h" },
-            { "tag": "synology", "type": "remote", "format": "source", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/synology.srs", "update_interval": "24h" },
-            { "tag": "category-public-tracker", "type": "remote", "format": "source", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-public-tracker.srs", "update_interval": "24h" },
+            { "tag": "synology", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/synology.srs", "update_interval": "24h" },
+            { "tag": "category-public-tracker", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-public-tracker.srs", "update_interval": "24h" },
             { "tag": "apple-cn", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/apple@cn.srs", "update_interval": "24h" },
             { "tag": "microsoft-cn", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft@cn.srs", "update_interval": "24h" },
             { "tag": "games-cn", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-games@cn.srs", "update_interval": "24h" },
