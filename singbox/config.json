@@ -70,7 +70,7 @@
     "outbounds": [
         {"tag": "🚀 默认代理", "type": "selector", "outbounds": ["🇭🇰 香港节点", "🇨🇳 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🪄 手动选择", "♻️ 自动选择", "🌐 全球直连"]},
         {"tag": "🌐 全球直连", "type": "direct"},
-        {"tag": "🚫 拒绝连接", "type": "reject"},
+        {"tag": "🚫 拒绝连接", "type": "block"},
         {"tag": "🐟️ 漏网之鱼", "type": "selector", "outbounds": ["🚀 默认代理", "🪄 手动选择", "🌐 全球直连"]},
         {"tag": "♻️ 自动选择", "type": "urltest", "outbounds": [ ], "interval": "3m", "tolerance": 30 },
         {"tag": "🪄 手动选择", "type": "selector", "outbounds": [ ]},
