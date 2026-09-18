@@ -1,7 +1,7 @@
 {
   "providers": [
     {
-      "tag": "JC1",
+      "tag": "my-sub",
       "type": "remote",
       "url": "此处填入订阅链接",
       "health_check": {"enabled":true,"url":"https://www.gstatic.com/generate_204","interval":"10m","timeout":"3s"},
