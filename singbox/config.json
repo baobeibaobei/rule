@@ -70,7 +70,7 @@
     "outbounds": [
         {"tag": "🚀 默认代理", "type": "selector", "outbounds": ["🇭🇰 香港节点", "🇨🇳 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🪄 手动选择", "♻️ 自动选择", "🌐 全球直连"]},
         {"tag": "🌐 全球直连", "type": "direct"},
-        {"tag": "🚫 拒绝连接", "type": "block"},
+        {"tag": "🚫 拒绝连接", "type": "reject"},
         {"tag": "🐟️ 漏网之鱼", "type": "selector", "outbounds": ["🚀 默认代理", "🪄 手动选择", "🌐 全球直连"]},
         {"tag": "♻️ 自动选择", "type": "urltest", "outbounds": [ ], "interval": "3m", "tolerance": 30 },
         {"tag": "🪄 手动选择", "type": "selector", "outbounds": [ ]},
@@ -99,14 +99,14 @@
         {"tag": "📺 Bahamut", "type": "selector", "outbounds": ["🇨🇳 台湾节点", "🚀 默认代理", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🌐 全球直连"]},
         {"tag": "🪙 加密货币", "type": "selector", "outbounds": ["🚀 默认代理", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇨🇳 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🌐 全球直连"]},
 
-        {"tag": "🇭🇰 香港节点", "type": "selector", "outbounds": [ ], "include" :"🇭🇰|港|hk|Hong Kong|HongKong|hongkong|HONG KONG|HONGKONG|深港|HKG|九龙|Kowloon|新界|沙田|荃湾|葵涌", "exclude": "日"},
-        {"tag": "🇨🇳 台湾节点", "type": "selector", "outbounds": [ ], "include" :"🇹🇼|🇼🇸|台|新北|彰化|Taiwan|TAIWAN|TWN|TPE|ROC", "exclude": "日"},
-        {"tag": "🇸🇬 新加坡节点", "type": "selector", "outbounds": [ ], "include" :"🇸🇬|新加坡|坡|狮城|Singapore|SINGAPORE|SIN", "exclude": "日"},
-        {"tag": "🇯🇵 日本节点", "type": "selector", "outbounds": [ ], "include": "🇯🇵|JP|jp|日本|日|Japan", "exclude": "HK"},
-        {"tag": "🇰🇷 韩国节点", "type": "selector", "outbounds": [ ], "include": "🇰🇷|Korea|KOREA|KOR|首尔|韩|韓|春川|Chuncheon|ICN", "exclude": "日"},
-        {"tag": "🇺🇸 美国节点", "type": "selector", "outbounds": [ ], "include": "🇺🇸|US|us|美国|美|United States", "exclude": "日"},
-        {"tag": "🇨🇦 加拿大节点", "type": "selector", "outbounds": [ ], "include": "🇨🇦|加拿大|Canada|CANADA|CAN|渥太华|温哥华|卡尔加里|蒙特利尔|Montreal|YVR|YYZ|YUL", "exclude": "日"},
-        {"tag": "🇬🇧 英国节点", "type": "selector", "outbounds": [ ], "include": "🇬🇧|英国|Britain|United Kingdom|UNITED KINGDOM|England|伦敦|曼彻斯特|Manchester|GBR|LHR|MAN", "exclude": "日"},
+        {"tag": "🇭🇰 香港节点", "type": "selector", "providers": ["my-sub"], "includes": ["🇭🇰", "港", "hk", "Hong Kong", "HongKong", "hongkong", "HONG KONG", "HONGKONG", "深港", "HKG", "九龙", "Kowloon", "新界", "沙田", "荃湾", "葵涌"], "excludes": ["日"]},
+        {"tag": "🇨🇳 台湾节点", "type": "selector", "providers": ["my-sub"], "includes": ["🇹🇼", "🇼🇸", "台", "新北", "彰化", "Taiwan", "TAIWAN", "TWN", "TPE", "ROC"], "excludes": ["日"]},
+        {"tag": "🇸🇬 新加坡节点", "type": "selector", "providers": ["my-sub"], "includes": ["🇸🇬", "新加坡", "坡", "狮城", "Singapore", "SINGAPORE", "SIN"], "excludes": ["日"]},
+        {"tag": "🇯🇵 日本节点", "type": "selector", "providers": ["my-sub"], "includes": ["🇯🇵", "JP", "jp", "日本", "日", "Japan"], "excludes": ["HK"]},
+        {"tag": "🇰🇷 韩国节点", "type": "selector", "providers": ["my-sub"], "includes": ["🇰🇷", "Korea", "KOREA", "KOR", "首尔", "韩", "韓", "春川", "Chuncheon", "ICN"], "excludes": ["日"]},
+        {"tag": "🇺🇸 美国节点", "type": "selector", "providers": ["my-sub"], "includes": ["🇺🇸", "US", "us", "美国", "美", "United States"], "excludes": ["日"]},
+        {"tag": "🇨🇦 加拿大节点", "type": "selector", "providers": ["my-sub"], "includes": ["🇨🇦", "加拿大", "Canada", "CANADA", "CAN", "渥太华", "温哥华", "卡尔加里", "蒙特利尔", "Montreal", "YVR", "YYZ", "YUL"], "excludes": ["日"]},
+        {"tag": "🇬🇧 英国节点", "type": "selector", "providers": ["my-sub"], "includes": ["🇬🇧", "英国", "Britain", "United Kingdom", "UNITED KINGDOM", "England", "伦敦", "曼彻斯特", "Manchester", "GBR", "LHR", "MAN"], "excludes": ["日"]},
         {"tag": "GLOBAL", "type": "selector", "outbounds": ["🚀 默认代理", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇨🇳 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🌐 全球直连"]}
     ],
     "route": {
