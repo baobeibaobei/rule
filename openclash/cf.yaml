@@ -57,46 +57,78 @@ find-process-mode: strict
 keep-alive-interval: 60
 keep-alive-idle: 60
 
+geox-url:
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+
 experimental:
   quic-go-disable-gso: true
 
 tun:
-  enable: false
-  auto-detect-interface: true
+  enable: true
+  stack: mixed   ##如果内核版本大于v1.19.31，此处可以改为自研协议栈 mips ，理论上性能更好。
+  dns-hijack: ["any:53", "tcp://any:53"]
   auto-route: true
-  strict-route: true
   auto-redirect: true
-  device: mihomo
-  disable-icmp-forwarding: true
-  dns-hijack:
-    - 0.0.0.0:53
-  stack: mixed
+  auto-detect-interface: true
+  route-exclude-address-set:
+    - cnip
+
+sniffer:
+  enable: true
+  override-destination: false
+  force-dns-mapping: false
+  parse-pure-ip: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
 
 dns:
   enable: true
-  ipv6: false
   listen: 0.0.0.0:7874
   cache-algorithm: arc
-  use-hosts: true
-  respect-rules: false
+  ipv6: false
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/15
+  fake-ip-ttl: 1
+  fake-ip-range: 198.18.0.0/16
   fake-ip-range6: 2001:2::1/48
-  fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:geolocation-cn']
-  default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
-  proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
-  nameserver: ['https://dns.google/dns-query#DNS', 'https://doh.opendns.com/dns-query#DNS', 'https://cloudflare-dns.com/dns-query#DNS']
+  fake-ip-filter-mode: blacklist
+  default-nameserver:
+    - https://223.5.5.5/dns-query
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  direct-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
   nameserver-policy:
-    'rule-set:cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
-  direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
-
-hosts:
-  'dns.alidns.com': ['223.5.5.5', '223.6.6.6']
-  'doh.pub': ['1.12.12.12', '120.53.53.53']
-  'dns.google': ['8.8.8.8', '8.8.4.4']
-  'cloudflare-dns.com': ['1.1.1.1', '1.0.0.1']
-  'doh.opendns.com': ['208.67.222.222', '208.67.220.220']
-  'services.googleapis.cn': 'services.googleapis.com'
+    "rule-set:cn,private,fakeipfilter_cn,games-cn,microsoft-cn,apple-cn,nvidia-cn":
+    - https://dns.alidns.com/dns-query#disable-qtype-65=true
+    - https://doh.pub/dns-query#disable-qtype-65=true
+    "rule-set:fakeipfilter_!cn":
+    - https://8.8.8.8/dns-query#默认代理&disable-qtype-65=true
+  nameserver:
+    - https://8.8.8.8/dns-query#默认代理&ecs=223.5.5.0/24
+  fallback:
+    - https://8.8.8.8/dns-query#默认代理
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+  fake-ip-filter:
+    - rule-set:fakeipfilter_cn
+    - rule-set:fakeipfilter_!cn
+    - rule-set:private
+    - rule-set:cn
+    - rule-set:microsoft-cn
+    - rule-set:apple-cn
+    - rule-set:games-cn
+    - rule-set:nvidia-cn
 
 profile: { store-selected: true, store-fake-ip: true }
 
@@ -170,7 +202,8 @@ proxy-groups:
 rule-providers:
   category-ads-all: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.mrs }
   custom_direct: { <<: *base-ruleset-dn-text, url: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/Custom_Direct.list }
-  fakeip-filter: { <<: *base-ruleset-dn-text, url: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/fakeip-filter.list }
+  fakeipfilter_cn: { <<: *base-ruleset-dn-text, url: https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/rules/fakeipfilter-cn.list }
+  fakeipfilter_!cn: { <<: *base-ruleset-dn-text, url: https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/rules/fakeipfilter-!cn.list }
   private: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs }
   synology: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/synology.mrs }
   public-tracker: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-public-tracker.mrs }
@@ -178,6 +211,10 @@ rule-providers:
   microsoft-cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@cn.mrs }
   games-cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-games@cn.mrs }
   nvidia-cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/nvidia@cn.mrs }
+  openai: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.mrs }
+  bing: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bing.mrs }
+  gemini: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.mrs }
+  ai: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs }
   speedtest: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs }
   cloudflare: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs }
   telegram: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs }
@@ -189,10 +226,6 @@ rule-providers:
   tiktok: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs }
   spotify: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs }
   steam: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.mrs }
-  openai: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.mrs }
-  bing: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bing.mrs }
-  gemini: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.mrs }
-  ai: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs }
   paypal: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs }
   apple: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs }
   youtube: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs }
@@ -216,6 +249,7 @@ rule-providers:
   cnip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs }
 
 rules:
+  - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
   - RULE-SET,category-ads-all,广告策略  
   - RULE-SET,custom_direct,全球直连
   - RULE-SET,private,全球直连
@@ -237,6 +271,10 @@ rules:
   - DOMAIN-SUFFIX,opencode.ai,AI直连
   - DOMAIN-SUFFIX,models.dev,AI代理
   - DOMAIN-SUFFIX,agentrouter.org,AI代理
+  - RULE-SET,openai,ChatGPT
+  - RULE-SET,bing,Copilot
+  - RULE-SET,gemini,Gemini
+  - RULE-SET,ai,AI代理
   - RULE-SET,speedtest,Speedtest
   - RULE-SET,cloudflare,Cloudflare
   - RULE-SET,telegram,Telegram
@@ -248,10 +286,6 @@ rules:
   - RULE-SET,tiktok,Tiktok
   - RULE-SET,spotify,默认代理
   - RULE-SET,steam,默认代理
-  - RULE-SET,openai,ChatGPT
-  - RULE-SET,bing,Copilot
-  - RULE-SET,gemini,Gemini
-  - RULE-SET,ai,AI代理
   - RULE-SET,paypal,PayPal
   - RULE-SET,apple,默认代理
   - RULE-SET,youtube,Youtube
