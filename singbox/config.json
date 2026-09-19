@@ -58,6 +58,7 @@
             "strict_route": true,
             "stack": "mixed",
             "dns_mode": "hijack"
+            "auto_redirect": true
         },
         {
             "type": "mixed",
