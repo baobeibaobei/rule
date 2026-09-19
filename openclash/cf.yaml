@@ -1,5 +1,5 @@
 #机场设置锚点
-base-provider: &base-provider { type: http, interval: 43200, proxy: DIRECT, header: { User-Agent: ['clash.meta/v1.19.29', 'clash-verge/v2.5.2', 'mihomo'] }, override: { additional-prefix: '[机场名]' }, health-check: { enable: true, interval: 3600, lazy: true, url: https://www.gstatic.com/generate_204 } }
+base-provider: &base-provider { type: http, interval: 3600, proxy: DIRECT, header: { User-Agent: ['clash.meta/v1.19.29', 'clash-verge/v2.5.2', 'mihomo'] }, health-check: { enable: true, interval: 3600, lazy: true, url: https://www.gstatic.com/generate_204 } }
 #过滤器锚点
 base-filter-hk: &base-filter-hk { filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG)', icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-hk.png }
 base-filter-tw: &base-filter-tw { filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE)', icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/region-cn.png }
@@ -33,7 +33,8 @@ base-ruleset-dn-yaml: &base-ruleset-dn-yaml { type: http, behavior: classical, f
 proxy-providers:
   provider1:
     <<: *base-provider
-    url: '订阅链接'
+    url: '订阅地址'
+    override: { additional-prefix: '[provider1]' }
     age-secret-key: ''
 
 mode: rule
@@ -111,9 +112,9 @@ proxy-groups:
   - { name: 全球直连, <<: *direct-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-global-direct.png }
   - { name: 漏网之鱼, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-fish.png }
   - { name: 自动选择, <<: *base-urltest, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-auto-select.png }
-  - { name: 手动选择, type: select, include-all: true, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-select.png }
+  - { name: 手动选择, type: select, include-all: true, empty-fallback: REJECT, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-select.png }
   - { name: 负载均衡, <<: *base-loadbalance, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-loadbalance.png }
-  - { name: 广告拦截, <<: *reject-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-ad.png }
+  - { name: 广告策略, <<: *reject-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-ad.png }
 
   - { name: DNS, <<: *base-dns, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-dns.png }
   - { name: Speedtest, <<: *default-first, icon: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/icon/group-speedtest.png }
@@ -203,8 +204,8 @@ rule-providers:
   microsoft: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs }
   bahamut: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bahamut.mrs }
   cryptocurrency: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-cryptocurrency.mrs }
-  gfw: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs }
   geolocation-cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-cn.mrs }
+  geolocation-!cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs }
   cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs }
 
   privateip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs }
@@ -215,7 +216,7 @@ rule-providers:
   cnip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs }
 
 rules:
-  - RULE-SET,category-ads-all,广告拦截  
+  - RULE-SET,category-ads-all,广告策略  
   - RULE-SET,custom_direct,全球直连
   - RULE-SET,private,全球直连
   - RULE-SET,privateip,全球直连,no-resolve
@@ -231,6 +232,7 @@ rules:
   - DOMAIN-SUFFIX,1panel.live,全球直连
   - DOMAIN-SUFFIX,tabitoken.com,AI代理
   - DOMAIN-SUFFIX,kktoken.cc,AI代理
+  - DOMAIN-SUFFIX,gorouter.app,AI代理
   - DOMAIN-SUFFIX,justwoker.icu,AI直连
   - DOMAIN-SUFFIX,opencode.ai,AI直连
   - DOMAIN-SUFFIX,models.dev,AI代理
@@ -265,7 +267,7 @@ rules:
   - RULE-SET,netflixip,Netflix,no-resolve
   - RULE-SET,googleip,Google,no-resolve
   - RULE-SET,twitterip,默认代理,no-resolve
-  - RULE-SET,gfw,默认代理
   - RULE-SET,geolocation-cn,全球直连
+  - RULE-SET,geolocation-!cn,默认代理
   - RULE-SET,cnip,全球直连
   - MATCH,漏网之鱼
