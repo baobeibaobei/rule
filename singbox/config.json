@@ -25,7 +25,6 @@
     },
     "dns": {
         "servers": [
-            { "tag": "local", "type": "local", "prefer_go": true},
             { "tag": "direct_dns", "type": "udp", "server": "223.5.5.5" },
             { "tag": "proxy_dns", "type": "https", "server": "8.8.8.8", "detour": "🚀 默认代理" },
             { "tag": "fake_dns", "type": "fakeip", "inet4_range": "11.0.0.0/16", "inet6_range": "3ffe::/16" }
