@@ -35,7 +35,7 @@
             { "clash_mode": "Direct", "server": "direct_dns" },
             { "clash_mode": "Global", "server": "fake_dns" },
             { "domain_suffix": [ "googleapis.cn" ], "server": "proxy_dns" },
-            { "rule_set": "geosite-fakeipfilter-cn", "server": "direct_dns" },
+            { "rule_set": "fakeipfilter-cn", "server": "direct_dns" },
             { "query_type": ["A", "AAAA"], "server": "fake_dns", "rewrite_ttl": 1 },
             { "rule_set": "cn","server": "direct_dns" }
          ],
@@ -112,6 +112,7 @@
         "default_http_client": "proxy-client",
         "default_domain_resolver": { "server": "direct_dns" },
         "rule_set": [
+            { "tag": "fakeipfilter-cn", "type": "remote", "format": "source", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/rules/fakeipfilter-cn.json", "update_interval": "24h" },
             { "tag": "category-ads-all", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ads-all.srs", "update_interval": "24h" },
             { "tag": "custom_direct", "type": "remote", "format": "source", "url": "https://github.com/baobeibaobei/rule/raw/refs/heads/main/singbox/custom_direct.json", "update_interval": "24h" },
             { "tag": "synology", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/synology.srs", "update_interval": "24h" },
