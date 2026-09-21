@@ -25,25 +25,29 @@
     },
     "dns": {
         "servers": [
+            { "tag": "local", "type": "local", "prefer_go": true},
+            { "tag": "direct_dns", "type": "udp", "server": "223.5.5.5" },
             { "tag": "proxy_dns", "type": "https", "server": "8.8.8.8", "detour": "🚀 默认代理" },
-            { "tag": "direct_dns", "type": "udp", "server": "223.5.5.5" }
+            { "tag": "fake_dns", "type": "fakeip", "inet4_range": "11.0.0.0/16", "inet6_range": "3ffe::/16" }
         ],
         "rules": [
-            { "clash_mode": "direct", "server": "direct_dns" },
-            { "clash_mode": "global", "server": "proxy_dns" },
-            { "rule_set": "geolocation-!cn", "action": "route", "server": "proxy_dns" },
+            { "rule_set": "geolocation-!cn", "query_type": [ "A", "AAAA" ], "action": "route", "server": "fake_dns" },
             { "domain_suffix": [ "googleapis.cn" ], "server": "proxy_dns" },
             {
                 "type": "logical",
                 "mode": "or",
                 "action": "route",
                 "rules": [
+                    { "domain_suffix": [ ".cn" ] },
                     { "domain_suffix": [ "ileidian.com" ] },
+                    { "domain_keyword": [ "stun", "turn" ] },
                     { "rule_set": "geolocation-cn" }
                 ],
                 "server": "direct_dns"
             },
-            { "action": "route", "server": "proxy_dns" }
+            { "action": "evaluate", "server": "proxy_dns" },
+            { "match_response": true, "rule_set": "cnip", "action": "route", "server": "direct_dns" },
+            { "action": "route", "query_type": [ "A", "AAAA" ], "server": "fake_dns", "rewrite_ttl": 1 }            
         ]
     },
     "inbounds": [
