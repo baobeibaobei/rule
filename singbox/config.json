@@ -51,7 +51,6 @@
         ],
         "final": "proxy_dns",
         "strategy": "prefer_ipv4",
-        "independent_cache": true,
         "cache_capacity": 8192,
         "reverse_mapping": true
     },
