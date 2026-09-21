@@ -48,7 +48,12 @@
             { "action": "evaluate", "server": "proxy_dns" },
             { "match_response": true, "rule_set": "cnip", "action": "route", "server": "direct_dns" },
             { "action": "route", "query_type": [ "A", "AAAA" ], "server": "fake_dns", "rewrite_ttl": 1 }            
-        ]
+        ],
+        "final": "proxy_dns",
+        "strategy": "prefer_ipv4",
+        "independent_cache": true,
+        "cache_capacity": 8192,
+        "reverse_mapping": true
     },
     "inbounds": [
         {
