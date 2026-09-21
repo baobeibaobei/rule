@@ -28,27 +28,17 @@
             { "tag": "local", "type": "local", "prefer_go": true},
             { "tag": "direct_dns", "type": "https", "server": "223.5.5.5" },
             { "tag": "proxy_dns", "type": "https", "server": "8.8.8.8", "detour": "🚀 默认代理" },
-            { "tag": "fake_dns", "type": "fakeip", "inet4_range": "11.0.0.0/16", "inet6_range": "3ffe::/16" }
+            { "tag": "fake_dns", "type": "fakeip", "inet4_range": "198.19.0.0/16", "inet6_range": "2001:db8::/32" }
         ],
         "rules": [
-            { "rule_set": "geolocation-!cn", "query_type": [ "A", "AAAA" ], "action": "route", "server": "fake_dns" },
+            { "query_type": ["HTTPS", "SVCB"], "action": "reject" },
+            { "clash_mode": "Direct", "server": "direct_dns" },
+            { "clash_mode": "Global", "server": "fake_dns" },
             { "domain_suffix": [ "googleapis.cn" ], "server": "proxy_dns" },
-            {
-                "type": "logical",
-                "mode": "or",
-                "action": "route",
-                "rules": [
-                    { "domain_suffix": [ ".cn" ] },
-                    { "domain_suffix": [ "ileidian.com" ] },
-                    { "domain_keyword": [ "stun", "turn" ] },
-                    { "rule_set": "geolocation-cn" }
-                ],
-                "server": "direct_dns"
-            },
-            { "action": "evaluate", "server": "proxy_dns" },
-            { "match_response": true, "rule_set": "cnip", "action": "route", "server": "direct_dns" },
-            { "action": "route", "query_type": [ "A", "AAAA" ], "server": "fake_dns", "rewrite_ttl": 1 }            
-        ],
+            { "rule_set": "geosite-fakeipfilter-cn", "server": "direct_dns" },
+            { "query_type": ["A", "AAAA"], "server": "fake_dns", "rewrite_ttl": 1 },
+            { "rule_set": "cn","server": "direct_dns" }
+         ],
         "final": "proxy_dns",
         "strategy": "prefer_ipv4",
         "cache_capacity": 8192,
@@ -157,6 +147,7 @@
             { "tag": "microsoft", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft.srs", "update_interval": "24h" },
             { "tag": "bahamut", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/bahamut.srs", "update_interval": "24h" },
             { "tag": "cryptocurrency", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-cryptocurrency.srs", "update_interval": "24h" },
+            { "tag": "cn", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cn.srs", "update_interval": "24h" },
             { "tag": "geolocation-cn", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/geolocation-cn.srs", "update_interval": "24h" },
             { "tag": "geolocation-!cn", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/geolocation-!cn.srs", "update_interval": "24h" },
             { "tag": "telegramip", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs", "update_interval": "24h" },
@@ -166,53 +157,19 @@
             { "tag": "cnip", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cn.srs", "update_interval": "24h" }
         ],
         "rules": [
-            {
-                "network": "icmp",
-                "action": "route",
-                "outbound": "🌐 全球直连"
-            },
-            {
-                "port": [ 20, 21, 22, 23, 53, 80, 123, 143, 194, 443, 465, 587, 853, 993, 995, 998, 2052, 2053, 2082, 2083, 2086, 2095, 2096, 5222, 5228, 5229, 5230, 8080, 8443, 8880, 8888, 8889 ],
-                "invert": true,
-                "action": "bypass"
-            },
-            {
-                "type": "logical",
-                "mode": "and",
-                "rules": [
-                    { "port": 443 },
-                    { "network": "udp" },
-                    { "rule_set": "geolocation-cn", "invert": true },
-                    { "rule_set": "cnip", "invert": true }
-                ],
-                "action": "reject"
-            },
-            { "action": "sniff" },
-            {
-                "type": "logical",
-                "mode": "or",
-                "rules": [
-                    { "protocol": "dns" },
-                    { "port": 53 }
-                ],
-                "action": "hijack-dns"
-            },
-            { "clash_mode": "direct", "outbound": "🌐 全球直连" },
-            { "clash_mode": "global", "outbound": "🚀 默认代理" },
-            { "ip_is_private": true, "action": "route", "outbound": "🌐 全球直连" },
+            { "type": "logical", "mode": "and", "rules": [ { "port": [ 53, 853 ], "invert": true }, { "clash_mode": "Global", "invert": true }, { "type": "logical", "mode": "or", "rules": [ { "ip_is_private": true }, { "rule_set": "cnip" } ] } ], "action": "bypass" },
+            { "type": "logical", "mode": "or", "rules": [ { "domain_suffix": "push.apple.com" }, { "rule_set": "telegramip" } ], "invert": true, "action": "sniff", "sniffer": [ "http", "tls", "quic", "dns" ], "timeout": "500ms" },
+            { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
+            { "type": "logical", "mode": "or", "rules": [ { "port": 853 }, { "protocol": [ "stun", "quic" ] } ], "action": "reject", "no_drop": true },
+            { "network": "icmp", "action": "resolve" },
+            { "network": "icmp", "outbound": "🌐 全球直连" },
+            { "ip_is_private": true, "outbound": "🌐 全球直连"},
+            { "clash_mode": "Direct", "outbound": "🌐 全球直连" },
+            { "clash_mode": "Global", "outbound": "🚀 默认代理" },
             { "protocol": "bittorrent", "action": "route", "outbound": "🌐 全球直连" },
             { "domain_suffix": [ "ileidian.com", "ottiptv.cc", "xiuxitong.com", "pc528.net", "tracker.m-team.cc" ], "action": "route", "outbound": "🌐 全球直连" },
             { "domain_suffix": [ "googleapis.cn" ], "action": "route", "outbound": "🚀 默认代理" },
-            {
-                "type": "logical",
-                "mode": "or",
-                "rules": [
-                    { "domain": [ "ic.adobe.io", "cc-api-data.adobe.io" ] },
-                    { "domain_regex": "^[a-z\\d]{10}\\.adobe\\.io$" },
-                    { "domain_suffix": "adobestats.io" }
-                ],
-                "action": "reject"
-            },
+            { "type": "logical", "mode": "or", "rules": [ { "domain": [ "ic.adobe.io", "cc-api-data.adobe.io" ] }, { "domain_regex": "^[a-z\\d]{10}\\.adobe\\.io$" }, { "domain_suffix": "adobestats.io" } ], "action": "reject" },
             { "domain_suffix": [ "uhdnow.com" ], "action": "route", "outbound": "🎥 Emby" },
             { "rule_set": "category-ads-all", "action": "route", "outbound": "🛡️ 广告策略" },
             { "rule_set": "custom_direct", "action": "route", "outbound": "🌐 全球直连" },
@@ -250,6 +207,7 @@
             { "rule_set": "microsoft", "action": "route", "outbound": "🚀 默认代理" },
             { "rule_set": "bahamut", "action": "route", "outbound": "📺 Bahamut" },
             { "rule_set": "cryptocurrency", "action": "route", "outbound": "🪙 加密货币" },
+            { "rule_set": "cn", "action": "route", "outbound": "🌐 全球直连" },
             { "rule_set": "geolocation-cn", "action": "route", "outbound": "🌐 全球直连" },
             { "rule_set": "geolocation-!cn", "action": "route", "outbound": "🚀 默认代理" },
             { "action": "resolve" },
