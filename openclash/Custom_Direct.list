@@ -9,10 +9,6 @@ DOMAIN-SUFFIX,yaya520.top
 DOMAIN-SUFFIX,ottiptv.cc
 DOMAIN-SUFFIX,szshuaersi.com
 
-DOMAIN,linko.eu.cc
-DOMAIN,nexcom.eu.cc
-DOMAIN,telano.eu.cc
-
 #BT端口
 DST-PORT,6881-6999
 DST-PORT,50000-59999
