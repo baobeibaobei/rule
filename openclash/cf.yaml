@@ -35,7 +35,7 @@ proxy-providers:
   provider1:
     <<: *base-provider
     url: '订阅地址'
-    override: { additional-prefix: '[provider1]' }
+    override: { additional-prefix: '[CC]' }
     age-secret-key: ''
 
 mode: rule
@@ -82,12 +82,12 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/15
   fake-ip-range6: 2001:2::1/48
-  fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:geolocation-cn']
+  fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:cn']
   default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
   nameserver: ['https://dns.google/dns-query#DNS&ecs=223.5.5.0/24', 'https://doh.opendns.com/dns-query#DNS&ecs=223.5.5.0/24', 'https://cloudflare-dns.com/dns-query#DNS&ecs=223.5.5.0/24']  
   nameserver-policy:
-    'rule-set:private,fakeip-filter,geolocation-cn,cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+    'rule-set:private,fakeip-filter,cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
 
 hosts:
@@ -218,8 +218,8 @@ rule-providers:
   bahamut: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bahamut.mrs }
   cryptocurrency: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-cryptocurrency.mrs }
   geolocation-cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-cn.mrs }
-  geolocation-!cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs }
   cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs }
+  geolocation-!cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs }
 
   privateip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs }
   telegramip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs }
@@ -229,7 +229,7 @@ rule-providers:
   cnip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs }
 
 rules:
-  - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,geolocation-cn),(RULE-SET,cnip,no-resolve)))))),REJECT
+  - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn),(RULE-SET,cnip,no-resolve)))))),REJECT
   - RULE-SET,category-ads-all,广告策略  
   - RULE-SET,custom_direct,全球直连
   - RULE-SET,private,全球直连
@@ -284,7 +284,7 @@ rules:
   - RULE-SET,netflixip,Netflix,no-resolve
   - RULE-SET,googleip,Google,no-resolve
   - RULE-SET,twitterip,默认代理,no-resolve
-  - RULE-SET,geolocation-cn,全球直连
+  - RULE-SET,cn,全球直连
   - RULE-SET,geolocation-!cn,默认代理
   - RULE-SET,cnip,全球直连
   - MATCH,漏网之鱼
