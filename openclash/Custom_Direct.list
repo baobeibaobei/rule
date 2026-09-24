@@ -8,6 +8,9 @@ DOMAIN-SUFFIX,kaogujia.com
 DOMAIN-SUFFIX,yaya520.top
 DOMAIN-SUFFIX,ottiptv.cc
 DOMAIN-SUFFIX,szshuaersi.com
+DOMAIN-SUFFIX,linko.eu.cc
+DOMAIN-SUFFIX,nexcom.eu.cc
+DOMAIN-SUFFIX,telano.eu.cc
 
 #BT端口
 DST-PORT,6881-6999
