@@ -1,31 +1,8 @@
 {
-    "http_clients": [
-        {
-            "tag": "proxy-client",
-            "detour": "🚀 默认代理"
-        }
-    ],
-    "experimental": {
-        "clash_api": {
-            "external_controller": "0.0.0.0:9090",
-            "external_ui": "ui",
-            "secret": "",
-            "external_ui_download_url": "https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip",
-            "external_ui_download_detour": "🚀 默认代理",
-            "default_mode": "rule"
-        },
-        "cache_file": {
-            "enabled": true,
-            "store_dns": false
-        }
-    },
-    "log": {
-        "level": "info",
-        "timestamp": true
-    },
+    "$schema": "https://sing-box.sagernet.org/schema.json",
     "dns": {
         "servers": [
-            { "tag": "local", "type": "local", "prefer_go": true},
+            { "tag": "local", "type": "local", "prefer_go": true },
             { "tag": "direct_dns", "type": "https", "server": "223.5.5.5" },
             { "tag": "proxy_dns", "type": "https", "server": "8.8.8.8", "detour": "🚀 默认代理" },
             { "tag": "fake_dns", "type": "fakeip", "inet4_range": "198.19.0.0/16", "inet6_range": "2001:db8::/32" }
@@ -34,28 +11,31 @@
             { "query_type": ["HTTPS", "SVCB"], "action": "reject" },
             { "clash_mode": "direct", "server": "direct_dns" },
             { "clash_mode": "global", "server": "fake_dns" },
-            { "domain_suffix": [ "googleapis.cn" ], "server": "proxy_dns" },
-            { "rule_set": "fakeipfilter-cn", "server": "direct_dns" },
-            { "query_type": ["A", "AAAA"], "server": "fake_dns", "rewrite_ttl": 1 },
-            { "rule_set": "cn","server": "direct_dns" }
+            { "rule_set": ["fakeipfilter-cn", "cn", "microsoft-cn", "apple-cn", "nvidia-cn" ,"private"], "server": "direct_dns" },
+            { "rule_set": "fakeipfilter-!cn", "server": "proxy_dns" },
+            { "type": "logical", "mode": "and", "rules": [{"query_type": ["A", "AAAA"]}, {"rule_set": "geolocation-!cn", "invert": true}], "action": "evaluate", "server": "proxy_dns", "client_subnet": "223.5.5.0/24","timeout": "2s" },
+            { "match_response": true, "rule_set": "cnip", "server": "direct_dns" },
+            { "query_type": ["A", "AAAA"], "server": "fake_dns", "rewrite_ttl": 1 }
          ],
         "final": "proxy_dns",
         "strategy": "prefer_ipv4",
         "cache_capacity": 8192,
+        "optimistic": {"enabled": true},
         "reverse_mapping": true
     },
     "inbounds": [
         {
             "type": "tun",
             "tag": "tun-in",
-            "interface_name": "singbox_tun",
-            "address": [ "172.18.0.1/30", "fdfe:dcba:9876::1/126" ],
-            "mtu": 1500,
+            "address": [ "172.19.0.1/30", "fdfe:dcba:9876::1/126" ],
             "auto_route": true,
-            "route_exclude_address": [ "10.0.0.0/8", "100.64.0.0/10", "169.254.0.0/16", "172.16.0.0/12", "192.0.0.0/24", "192.168.0.0/16" ],
-            "strict_route": true,
-            "stack": "mixed",
-            "dns_mode": "hijack"
+            "platform": {
+                "http_proxy": { 
+                    "enabled": true,
+                    "server": "127.0.0.1",
+                    "server_port": 7890
+                }
+            }
         },
         {
             "type": "mixed",
@@ -125,72 +105,72 @@
         {"tag": "🏅 优选自动", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["优选"]}, {"action": "exclude", "keywords": ["免费"]}], "url": "http://www.gstatic.com/generate_204", "interval": "10m", "tolerance": 100},
         {"tag": "GLOBAL", "type": "selector", "outbounds": ["🚀 默认代理", "🪄 手动选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇨🇳 台湾节点", "🇸🇬 新加坡节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇲🇾 马来西亚节点", "🇺🇸 美国节点", "🇨🇦 加拿大节点", "🇬🇧 英国节点", "🇩🇪 德国节点", "🇦🇺 澳大利亚节点", "🗺️ 其他节点", "🏅 优选域名",  "🌐 全球直连"]}
     ],
+    "http_clients": [
+        {"tag": "直连下载", "detour": "🌐 全球直连"}
+    ],
     "route": {
         "final": "🐟️ 漏网之鱼",
         "auto_detect_interface": true,
-        "default_http_client": "proxy-client",
+        "default_http_client": "直连下载",
         "default_domain_resolver": { "server": "direct_dns" },
         "rule_set": [
-            { "tag": "fakeipfilter-cn", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/rules/fakeipfilter-cn.json", "update_interval": "24h" },
-            { "tag": "category-ads-all", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ads-all.srs", "update_interval": "24h" },
-            { "tag": "custom_direct", "type": "remote", "format": "source", "url": "https://github.com/baobeibaobei/rule/raw/refs/heads/main/singbox/custom_direct.json", "update_interval": "24h" },
-            { "tag": "synology", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/synology.srs", "update_interval": "24h" },
-            { "tag": "category-public-tracker", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-public-tracker.srs", "update_interval": "24h" },
-            { "tag": "apple-cn", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/apple@cn.srs", "update_interval": "24h" },
-            { "tag": "microsoft-cn", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft@cn.srs", "update_interval": "24h" },
-            { "tag": "games-cn", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-games@cn.srs", "update_interval": "24h" },
-            { "tag": "nvidia-cn", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/nvidia@cn.srs", "update_interval": "24h" },
-            { "tag": "speedtest", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/speedtest.srs", "update_interval": "24h" },
-            { "tag": "cloudflare", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare.srs", "update_interval": "24h" },
-            { "tag": "telegram", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/telegram.srs", "update_interval": "24h" },
-            { "tag": "netflix", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/netflix.srs", "update_interval": "24h" },
-            { "tag": "disney", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/disney.srs", "update_interval": "24h" },
-            { "tag": "hbo", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/hbo.srs", "update_interval": "24h" },
-            { "tag": "primevideo", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/primevideo.srs", "update_interval": "24h" },
-            { "tag": "hulu", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/hulu.srs", "update_interval": "24h" },
-            { "tag": "emby", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-emby.srs", "update_interval": "24h" },
-            { "tag": "tiktok", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/tiktok.srs", "update_interval": "24h" },
-            { "tag": "spotify", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/spotify.srs", "update_interval": "24h" },
-            { "tag": "steam", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/steam.srs", "update_interval": "24h" },
-            { "tag": "openai", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/openai.srs", "update_interval": "24h" },
-            { "tag": "bing", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/bing.srs", "update_interval": "24h" },
-            { "tag": "gemini", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google-gemini.srs", "update_interval": "24h" },
-            { "tag": "ai", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ai-!cn.srs", "update_interval": "24h" },
-            { "tag": "paypal", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/paypal.srs", "update_interval": "24h" },
-            { "tag": "apple", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/apple.srs", "update_interval": "24h" },
-            { "tag": "youtube", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/youtube.srs", "update_interval": "24h" },
-            { "tag": "googlefcm", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/googlefcm.srs", "update_interval": "24h" },
-            { "tag": "google", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google.srs", "update_interval": "24h" },
-            { "tag": "docker", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/docker.srs", "update_interval": "24h" },
-            { "tag": "github", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/github.srs", "update_interval": "24h" },
-            { "tag": "twitter", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/twitter.srs", "update_interval": "24h" },
-            { "tag": "microsoft", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft.srs", "update_interval": "24h" },
-            { "tag": "bahamut", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/bahamut.srs", "update_interval": "24h" },
-            { "tag": "cryptocurrency", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-cryptocurrency.srs", "update_interval": "24h" },
-            { "tag": "cn", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cn.srs", "update_interval": "24h" },
-            { "tag": "geolocation-cn", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/geolocation-cn.srs", "update_interval": "24h" },
-            { "tag": "geolocation-!cn", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/geolocation-!cn.srs", "update_interval": "24h" },
-            { "tag": "telegramip", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs", "update_interval": "24h" },
-            { "tag": "netflixip", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/netflix.srs", "update_interval": "24h" },
-            { "tag": "googleip", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/google.srs", "update_interval": "24h" },
-            { "tag": "twitterip", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/twitter.srs", "update_interval": "24h" },
-            { "tag": "cnip", "type": "remote", "format": "binary", "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cn.srs", "update_interval": "24h" }
+            { "tag": "fakeipfilter-cn", "type": "remote", "format": "source", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/rules/fakeipfilter-cn.json", "update_interval": "24h" },
+            { "tag": "fakeipfilter-!cn", "type": "remote", "format": "source", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/rules/fakeipfilter-!cn.json", "update_interval": "24h" },
+            { "tag": "private", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/private.srs", "update_interval": "24h" },
+            { "tag": "category-ads-all", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ads-all.srs", "update_interval": "24h" },
+            { "tag": "custom_direct", "type": "remote", "format": "source", "url": "https://gh-proxy.com/https://github.com/baobeibaobei/rule/raw/refs/heads/main/singbox/custom_direct.json", "update_interval": "24h" },
+            { "tag": "synology", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/synology.srs", "update_interval": "24h" },
+            { "tag": "category-public-tracker", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-public-tracker.srs", "update_interval": "24h" },
+            { "tag": "apple-cn", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/apple@cn.srs", "update_interval": "24h" },
+            { "tag": "microsoft-cn", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft@cn.srs", "update_interval": "24h" },
+            { "tag": "games-cn", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-games@cn.srs", "update_interval": "24h" },
+            { "tag": "nvidia-cn", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/nvidia@cn.srs", "update_interval": "24h" },
+            { "tag": "speedtest", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/speedtest.srs", "update_interval": "24h" },
+            { "tag": "cloudflare", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare.srs", "update_interval": "24h" },
+            { "tag": "telegram", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/telegram.srs", "update_interval": "24h" },
+            { "tag": "netflix", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/netflix.srs", "update_interval": "24h" },
+            { "tag": "disney", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/disney.srs", "update_interval": "24h" },
+            { "tag": "hbo", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/hbo.srs", "update_interval": "24h" },
+            { "tag": "primevideo", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/primevideo.srs", "update_interval": "24h" },
+            { "tag": "hulu", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/hulu.srs", "update_interval": "24h" },
+            { "tag": "emby", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-emby.srs", "update_interval": "24h" },
+            { "tag": "tiktok", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/tiktok.srs", "update_interval": "24h" },
+            { "tag": "spotify", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/spotify.srs", "update_interval": "24h" },
+            { "tag": "steam", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/steam.srs", "update_interval": "24h" },
+            { "tag": "openai", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/openai.srs", "update_interval": "24h" },
+            { "tag": "bing", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/bing.srs", "update_interval": "24h" },
+            { "tag": "gemini", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google-gemini.srs", "update_interval": "24h" },
+            { "tag": "ai", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ai-!cn.srs", "update_interval": "24h" },
+            { "tag": "paypal", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/paypal.srs", "update_interval": "24h" },
+            { "tag": "apple", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/apple.srs", "update_interval": "24h" },
+            { "tag": "youtube", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/youtube.srs", "update_interval": "24h" },
+            { "tag": "googlefcm", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/googlefcm.srs", "update_interval": "24h" },
+            { "tag": "google", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google.srs", "update_interval": "24h" },
+            { "tag": "docker", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/docker.srs", "update_interval": "24h" },
+            { "tag": "github", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/github.srs", "update_interval": "24h" },
+            { "tag": "twitter", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/twitter.srs", "update_interval": "24h" },
+            { "tag": "microsoft", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft.srs", "update_interval": "24h" },
+            { "tag": "bahamut", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/bahamut.srs", "update_interval": "24h" },
+            { "tag": "cryptocurrency", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-cryptocurrency.srs", "update_interval": "24h" },
+            { "tag": "cn", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cn.srs", "update_interval": "24h" },
+            { "tag": "geolocation-cn", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/geolocation-cn.srs", "update_interval": "24h" },
+            { "tag": "geolocation-!cn", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/geolocation-!cn.srs", "update_interval": "24h" },
+            { "tag": "telegramip", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs", "update_interval": "24h" },
+            { "tag": "netflixip", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/netflix.srs", "update_interval": "24h" },
+            { "tag": "googleip", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/google.srs", "update_interval": "24h" },
+            { "tag": "twitterip", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/twitter.srs", "update_interval": "24h" },
+            { "tag": "cnip", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cn.srs", "update_interval": "24h" }
         ],
         "rules": [
-            { "type": "logical", "mode": "and", "rules": [ { "port": [ 53, 853 ], "invert": true }, { "clash_mode": "global", "invert": true }, { "type": "logical", "mode": "or", "rules": [ { "ip_is_private": true }, { "rule_set": "cnip" } ] } ], "action": "bypass" },
-            { "type": "logical", "mode": "or", "rules": [ { "domain_suffix": "push.apple.com" }, { "rule_set": "telegramip" } ], "invert": true, "action": "sniff", "sniffer": [ "http", "tls", "quic", "dns" ], "timeout": "500ms" },
-            { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
+            { "type": "logical", "mode": "or", "rules": [{"domain_suffix": "push.apple.com"}, {"rule_set": "telegramip"}], "invert": true, "action": "sniff", "sniffer": ["http", "tls", "stun", "quic", "dns"], "timeout": "100ms" },
+            { "type": "logical", "mode": "or", "rules": [{"port": 53}, {"protocol": "dns"}], "action": "hijack-dns"},
             { "ip_is_private": true, "outbound": "🌐 全球直连"},
-            { "type": "logical", "mode": "or", "rules": [ { "port": 853 }, { "protocol": [ "stun", "quic" ] } ], "action": "reject", "no_drop": true },
-            { "network": "icmp", "action": "resolve" },
-            { "network": "icmp", "outbound": "🌐 全球直连" },
+            { "type": "logical", "mode": "or", "rules": [{"port": 853}, {"protocol": ["stun", "quic"]}], "action": "reject", "no_drop": true},
+            { "network": "icmp", "action": "resolve"},
+            { "network": "icmp", "outbound": "🌐 全球直连"},
             { "clash_mode": "direct", "outbound": "🌐 全球直连" },
             { "clash_mode": "global", "outbound": "GLOBAL" },
-            { "protocol": "bittorrent", "action": "route", "outbound": "🌐 全球直连" },
-            { "domain_suffix": [ "ileidian.com", "ottiptv.cc", "xiuxitong.com", "pc528.net", "tracker.m-team.cc" ], "action": "route", "outbound": "🌐 全球直连" },
-            { "domain_suffix": [ "googleapis.cn" ], "action": "route", "outbound": "🚀 默认代理" },
-            { "type": "logical", "mode": "or", "rules": [ { "domain": [ "ic.adobe.io", "cc-api-data.adobe.io" ] }, { "domain_regex": "^[a-z\\d]{10}\\.adobe\\.io$" }, { "domain_suffix": "adobestats.io" } ], "action": "reject" },
-            { "domain_suffix": [ "uhdnow.com" ], "action": "route", "outbound": "🎥 Emby" },
+            { "rule_set": "private", "action": "route", "outbound": "🌐 全球直连" },
             { "rule_set": "category-ads-all", "action": "route", "outbound": "🛡️ 广告策略" },
             { "rule_set": "custom_direct", "action": "route", "outbound": "🌐 全球直连" },
             { "rule_set": "synology", "action": "route", "outbound": "🌐 全球直连"},
@@ -237,5 +217,18 @@
             { "rule_set": "twitterip", "action": "route", "outbound": "🚀 默认代理"},
             { "rule_set": "cnip", "action": "route", "outbound": "🌐 全球直连" }
         ]
+    },
+    "experimental": {
+        "cache_file": {
+            "enabled": true
+        }
+    },
+    "certificate": {
+        "store": "chrome"
+    },
+    "log": {
+        "disabled": false,
+        "level": "info",
+        "timestamp": true
     }
 }
