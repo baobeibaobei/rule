@@ -192,7 +192,6 @@
             { "network": "icmp", "outbound": "🌐 全球直连"},
             { "clash_mode": "direct", "outbound": "🌐 全球直连" },
             { "clash_mode": "global", "outbound": "GLOBAL" },
-            { "protocol": "bittorrent", "action": "route", "outbound": "🌐 全球直连" },
             { "rule_set": "private", "action": "route", "outbound": "🌐 全球直连" },
             { "rule_set": "category-ads-all", "action": "route", "outbound": "🛡️ 广告策略" },
             { "rule_set": "custom_direct", "action": "route", "outbound": "🌐 全球直连" },
