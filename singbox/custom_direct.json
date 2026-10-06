@@ -13,7 +13,10 @@
         ".freetv.top",
         ".linko.eu.cc",
         ".nexcom.eu.cc",
-        ".telano.eu.cc"
+        ".telano.eu.cc",
+        ".lencr.org",
+        ".letsencrypt.com",
+        ".letsencrypt.org"
       ]
     }
   ]
