@@ -2,6 +2,11 @@
   "version": 2,
   "rules": [
     {
+      "domain": [
+        "linko.eu.cc",
+        "nexcom.eu.cc",
+        "telano.eu.cc"
+      ],
       "domain_suffix": [
         "yaya520.top",
         "zhuzhendi.com",
@@ -11,9 +16,6 @@
         "lmhcloud.com",
         "v1.mk",
         "freetv.top",
-        "linko.eu.cc",
-        "nexcom.eu.cc",
-        "telano.eu.cc",
         "lencr.org",
         "letsencrypt.com",
         "letsencrypt.org"
