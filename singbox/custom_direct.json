@@ -14,9 +14,9 @@
         ".linko.eu.cc",
         ".nexcom.eu.cc",
         ".telano.eu.cc",
-        ".lencr.org",
-        ".letsencrypt.com",
-        ".letsencrypt.org"
+        "lencr.org",
+        "letsencrypt.com",
+        "letsencrypt.org"
       ]
     }
   ]
