@@ -11,7 +11,7 @@
             { "query_type": ["HTTPS", "SVCB"], "action": "reject" },
             { "clash_mode": "direct", "server": "direct_dns" },
             { "clash_mode": "global", "server": "fake_dns" },
-            { "rule_set": ["fakeipfilter-cn", "cn", "microsoft-cn", "apple-cn", "games-cn", "nvidia-cn" ,"private"], "server": "direct_dns" },
+            { "rule_set": ["fakeipfilter-cn", "custom_direct", "cn", "microsoft-cn", "apple-cn", "games-cn", "nvidia-cn" ,"private"], "server": "direct_dns" },
             { "rule_set": "fakeipfilter-!cn", "server": "proxy_dns" },
             { "type": "logical", "mode": "and", "rules": [{"query_type": ["A", "AAAA"]}, {"rule_set": "geolocation-!cn", "invert": true}], "action": "evaluate", "server": "proxy_dns", "client_subnet": "223.5.5.0/24","timeout": "2s" },
             { "match_response": true, "rule_set": "cnip", "server": "direct_dns" },
