@@ -1,22 +1,22 @@
 {
-  "version": 3,
+  "version": 2,
   "rules": [
     {
       "domain_suffix": [
-        ".yaya520.top",
-        ".zhuzhendi.com",
-        ".ottiptv.cc",
-        ".szshuaersi.com",
-        ".kaogujia.com",
-        ".lmhcloud.com",
-        ".v1.mk",
-        ".freetv.top",
-        ".linko.eu.cc",
-        ".nexcom.eu.cc",
-        ".telano.eu.cc",
-        ".lencr.org",
-        ".letsencrypt.com",
-        ".letsencrypt.org"
+        "yaya520.top",
+        "zhuzhendi.com",
+        "ottiptv.cc",
+        "szshuaersi.com",
+        "kaogujia.com",
+        "lmhcloud.com",
+        "v1.mk",
+        "freetv.top",
+        "linko.eu.cc",
+        "nexcom.eu.cc",
+        "telano.eu.cc",
+        "lencr.org",
+        "letsencrypt.com",
+        "letsencrypt.org"
       ]
     }
   ]
