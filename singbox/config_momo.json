@@ -15,7 +15,7 @@
             { "rule_set": "fakeipfilter-!cn", "server": "proxy_dns" },
             { "type": "logical", "mode": "and", "rules": [{"query_type": ["A", "AAAA"]}, {"rule_set": "geolocation-!cn", "invert": true}], "action": "evaluate", "server": "proxy_dns", "client_subnet": "223.5.5.0/24","timeout": "2s" },
             { "match_response": true, "rule_set": "cnip", "server": "direct_dns" },
-            { "query_type": ["A", "AAAA"], "server": "fake_dns", "rewrite_ttl": 1 }
+            { "query_type": ["A", "AAAA"], "rule_set": "custom_direct", "invert": true, "server": "fake_dns", "rewrite_ttl": 1 }
          ],
         "final": "proxy_dns",
         "strategy": "prefer_ipv4",
