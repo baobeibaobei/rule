@@ -19,7 +19,11 @@
         "lencr.org",
         "letsencrypt.com",
         "letsencrypt.org"
-      ]
+      ],
+      "port_range": [
+        "1:79",
+        "81:442",
+        "444:65535"
     }
   ]
 }
