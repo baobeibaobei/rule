@@ -35,7 +35,7 @@ proxy-providers:
   provider1:
     <<: *base-provider
     url: '订阅地址'
-    override: { additional-prefix: '[provider1]' }
+    override: { additional-prefix: '[CC]' }
     age-secret-key: ''
 
 mode: rule
@@ -70,7 +70,7 @@ tun:
   device: mihomo
   disable-icmp-forwarding: false
   dns-hijack: ["any:53", "tcp://any:53"]
-  stack: mixed
+  stack: mips
 
 dns:
   enable: true
@@ -82,12 +82,13 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/15
   fake-ip-range6: 2001:2::1/48
-  fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:cn']
+  fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:custom_direct','rule-set:cn']
   default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+  direct-nameserver-follow-policy: true
   proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
   nameserver: ['https://dns.google/dns-query#DNS&ecs=223.5.5.0/24', 'https://doh.opendns.com/dns-query#DNS&ecs=223.5.5.0/24', 'https://cloudflare-dns.com/dns-query#DNS&ecs=223.5.5.0/24']  
   nameserver-policy:
-    'rule-set:private,fakeip-filter,cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+    'rule-set:private,fakeip-filter,custom_direct,cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
 
 hosts:
@@ -181,12 +182,15 @@ proxy-groups:
   - { name: 优选域名-故转, <<: [*base-fallback, *base-filter-yxym] }
 
 rule-providers:
+  ip-detect: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ip-geo-detect.mrs }
   category-ads-all: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.mrs }
   custom_direct: { <<: *base-ruleset-dn-text, url: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/Custom_Direct.list }
   fakeip-filter: { <<: *base-ruleset-dn-text, url: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/fakeip-filter.list }
   private: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs }
+  tailscale: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tailscale.mrs }
   synology: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/synology.mrs }
   public-tracker: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-public-tracker.mrs }
+  npmjs: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/npmjs.mrs }
   apple-cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@cn.mrs }
   microsoft-cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@cn.mrs }
   games-cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-games@cn.mrs }
@@ -220,6 +224,7 @@ rule-providers:
   geolocation-cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-cn.mrs }
   cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs }
   geolocation-!cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs }
+  gfw: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs }
 
   privateip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs }
   telegramip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs }
@@ -229,17 +234,8 @@ rule-providers:
   cnip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs }
 
 rules:
-  - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn),(RULE-SET,cnip,no-resolve)))))),REJECT
-  - RULE-SET,category-ads-all,广告策略  
-  - RULE-SET,custom_direct,全球直连
-  - RULE-SET,private,全球直连
-  - RULE-SET,privateip,全球直连,no-resolve
-  - RULE-SET,synology,全球直连
-  - RULE-SET,public-tracker,全球直连
-  - RULE-SET,apple-cn,全球直连
-  - RULE-SET,microsoft-cn,全球直连
-  - RULE-SET,games-cn,全球直连
-  - RULE-SET,nvidia-cn,全球直连
+  - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
+  - RULE-SET,ip-detect,默认代理
   - DOMAIN-SUFFIX,19882008.xyz,全球直连
   - DOMAIN-SUFFIX,dpdns.org,全球直连
   - DOMAIN-SUFFIX,cnb.cool,全球直连
@@ -254,6 +250,18 @@ rules:
   - DOMAIN-SUFFIX,developer.amd.com.cn,全球直连
   - DOMAIN-SUFFIX,cline.bot,AI服务
   - DOMAIN-SUFFIX,chat.b.ai,AI服务
+  - RULE-SET,category-ads-all,广告策略  
+  - RULE-SET,custom_direct,全球直连
+  - RULE-SET,private,全球直连
+  - RULE-SET,privateip,全球直连,no-resolve
+  - RULE-SET,tailscale,全球直连
+  - RULE-SET,synology,全球直连
+  - RULE-SET,public-tracker,全球直连
+  - RULE-SET,npmjs,全球直连
+  - RULE-SET,apple-cn,全球直连
+  - RULE-SET,microsoft-cn,全球直连
+  - RULE-SET,games-cn,全球直连
+  - RULE-SET,nvidia-cn,全球直连
   - RULE-SET,openai,ChatGPT
   - RULE-SET,bing,Copilot
   - RULE-SET,gemini,Gemini
@@ -284,7 +292,7 @@ rules:
   - RULE-SET,netflixip,Netflix,no-resolve
   - RULE-SET,googleip,Google,no-resolve
   - RULE-SET,twitterip,默认代理,no-resolve
+  - RULE-SET,gfw,默认代理
   - RULE-SET,cn,全球直连
-  - RULE-SET,geolocation-!cn,默认代理
   - RULE-SET,cnip,全球直连
   - MATCH,漏网之鱼
