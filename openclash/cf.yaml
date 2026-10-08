@@ -35,7 +35,7 @@ proxy-providers:
   provider1:
     <<: *base-provider
     url: '订阅地址'
-    override: { additional-prefix: '[CC]' }
+    override: { additional-prefix: '[provider1]' }
     age-secret-key: ''
 
 mode: rule
