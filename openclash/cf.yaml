@@ -255,9 +255,9 @@ rules:
   - RULE-SET,private,全球直连
   - RULE-SET,privateip,全球直连,no-resolve
   - RULE-SET,tailscale,全球直连
+  - RULE-SET,npmjs,全球直连
   - RULE-SET,synology,全球直连
   - RULE-SET,public-tracker,全球直连
-  - RULE-SET,npmjs,全球直连
   - RULE-SET,apple-cn,全球直连
   - RULE-SET,microsoft-cn,全球直连
   - RULE-SET,games-cn,全球直连
