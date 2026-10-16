@@ -2,6 +2,11 @@
   "version": 2,
   "rules": [
     {
+      "domain_keyword": [
+        "wogg"
+      ]
+     },
+    {
       "domain_suffix": [
         "yaya520.top",
         "zhuzhendi.com",
