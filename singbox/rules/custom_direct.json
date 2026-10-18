@@ -7,6 +7,14 @@
       ]
     },
     {
+      "ip_cidr": [
+        "38.76.197.172/32"
+      ],
+      "port": [
+        16969
+      ]
+    },
+    {
       "domain_suffix": [
         "yaya520.top",
         "zhuzhendi.com",
@@ -17,12 +25,27 @@
         "freetv.top",
         "lencr.org",
         "letsencrypt.com",
-        "letsencrypt.org",
+        "muoua.top",
         "333291.xyz",
         "666291.xyz",
-        "muoua.top",
-        "muou.asia",
-        "muou.site"
+        "hjzhencai.top",
+        "huanjuanwp.shop",
+        "qwnull.com",
+        "qwmkv.com",
+        "qwfilm.com",
+        "qnmp4.com",
+        "qnnull.com",
+        "qnhot.com",
+        "qncool.com",
+        "xhban.xyz",
+        "yydsys.top",
+        "yydsys.cc",
+        "214521.xyz",
+        "libviofabu.com",
+        "libvio.app",
+        "libfabu.com",
+        "libviogroup.github.io",
+        "wn4k.com"
       ]
     }
   ]
