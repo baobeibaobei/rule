@@ -1,6 +1,5 @@
 payload:
   - DOMAIN-KEYWORD,wogg
-  
   - DOMAIN-SUFFIX,freetv.top
   - DOMAIN-SUFFIX,lmhcloud.com
   - DOMAIN-SUFFIX,zhuzhendi.com
@@ -17,5 +16,3 @@ payload:
   - DOMAIN-SUFFIX,huanjuanwp.shop
   - DOMAIN-SUFFIX,xhban.xyz
   - DOMAIN-SUFFIX,wn4k.com
-  
-  
