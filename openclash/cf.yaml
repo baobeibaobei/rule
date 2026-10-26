@@ -233,6 +233,9 @@ rule-providers:
   ip-detect: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ip-geo-detect.mrs }
 
 rules:
+  - AND,((DST-PORT,7893),(IP-CIDR,127.0.0.0/8,no-resolve)),REJECT
+  - AND,((DST-PORT,7893),(IP-CIDR6,::1/128,no-resolve)),REJECT
+  - AND,((DST-PORT,853),(IP-CIDR,198.51.100.0/30,no-resolve)),REJECT
   - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
   - RULE-SET,ip-detect,默认代理
   - DOMAIN-SUFFIX,19882008.xyz,全球直连
