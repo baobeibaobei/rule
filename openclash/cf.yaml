@@ -51,7 +51,7 @@ bind-address: '*'
 external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
 external-ui-name: zashboard
 external-ui: ui
-ipv6: false
+ipv6: ture
 tcp-concurrent: true
 unified-delay: true
 find-process-mode: strict
