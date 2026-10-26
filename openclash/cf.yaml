@@ -51,7 +51,7 @@ bind-address: '*'
 external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
 external-ui-name: zashboard
 external-ui: ui
-ipv6: ture
+ipv6: true
 tcp-concurrent: true
 unified-delay: true
 find-process-mode: strict
@@ -68,7 +68,7 @@ tun:
   strict-route: true
   auto-redirect: true
   device: mihomo
-  disable-icmp-forwarding: false
+  disable-icmp-forwarding: true
   route-exclude-address-set: ['cnip', 'privateip']
   dns-hijack: ['any:53', 'tcp://any:53']
   stack: mips
