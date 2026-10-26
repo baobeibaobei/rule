@@ -76,7 +76,7 @@ tun:
 
 dns:
   enable: true
-  ipv6: false
+  ipv6: true
   listen: 0.0.0.0:7874
   cache-algorithm: arc
   use-hosts: true
