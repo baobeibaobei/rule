@@ -251,6 +251,7 @@ rules:
   - DOMAIN-SUFFIX,developer.amd.com.cn,全球直连
   - DOMAIN-SUFFIX,cline.bot,AI服务
   - DOMAIN-SUFFIX,chat.b.ai,AI服务
+  - DOMAIN-SUFFIX,codeberg.org,全球直连
   - RULE-SET,category-ads-all,广告策略  
   - RULE-SET,custom_direct,全球直连
   - RULE-SET,private,全球直连
