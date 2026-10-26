@@ -182,7 +182,6 @@ proxy-groups:
   - { name: 优选域名-故转, <<: [*base-fallback, *base-filter-yxym] }
 
 rule-providers:
-  ip-detect: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ip-geo-detect.mrs }
   category-ads-all: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.mrs }
   custom_direct: { <<: *base-ruleset-dn-text, url: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/Custom_Direct.list }
   fakeip-filter: { <<: *base-ruleset-dn-text, url: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/fakeip-filter.list }
@@ -225,6 +224,7 @@ rule-providers:
   cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs }
   geolocation-!cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs }
   gfw: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs }
+  ip-detect: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ip-geo-detect.mrs }
 
   privateip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs }
   telegramip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs }
@@ -235,7 +235,6 @@ rule-providers:
 
 rules:
   - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
-  - RULE-SET,ip-detect,默认代理
   - DOMAIN-SUFFIX,19882008.xyz,全球直连
   - DOMAIN-SUFFIX,dpdns.org,全球直连
   - DOMAIN-SUFFIX,cnb.cool,全球直连
@@ -293,6 +292,7 @@ rules:
   - RULE-SET,googleip,Google,no-resolve
   - RULE-SET,twitterip,默认代理,no-resolve
   - RULE-SET,gfw,默认代理
+  - RULE-SET,ip-detect,默认代理
   - RULE-SET,cn,全球直连
   - RULE-SET,cnip,全球直连
   - MATCH,漏网之鱼
