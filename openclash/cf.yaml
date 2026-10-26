@@ -58,9 +58,6 @@ find-process-mode: strict
 keep-alive-interval: 60
 keep-alive-idle: 60
 
-experimental:
-  quic-go-disable-gso: true
-
 tun:
   enable: true
   auto-detect-interface: true
