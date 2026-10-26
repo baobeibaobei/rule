@@ -1,10 +1,21 @@
 # 自定义直连列表
+# 域名关键字匹配
+DOMAIN-KEYWORD,wogg
+
 # 域名后缀匹配
 DOMAIN-SUFFIX,freetv.top
 DOMAIN-SUFFIX,lmhcloud.com
 DOMAIN-SUFFIX,zhuzhendi.com
-DOMAIN-SUFFIX,v1.mk
 DOMAIN-SUFFIX,kaogujia.com
 DOMAIN-SUFFIX,yaya520.top
 DOMAIN-SUFFIX,ottiptv.cc
 DOMAIN-SUFFIX,szshuaersi.com
+DOMAIN-SUFFIX,lencr.org
+DOMAIN-SUFFIX,letsencrypt.com
+DOMAIN-SUFFIX,muoua.top
+DOMAIN-SUFFIX,333291.xyz
+DOMAIN-SUFFIX,666291.xyz
+DOMAIN-SUFFIX,hjzhencai.top
+DOMAIN-SUFFIX,huanjuanwp.shop
+DOMAIN-SUFFIX,xhban.xyz
+DOMAIN-SUFFIX,wn4k.com
