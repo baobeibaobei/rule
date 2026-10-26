@@ -237,6 +237,7 @@ rule-providers:
 
 rules:
   - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
+  - RULE-SET,ip-detect,默认代理
   - DOMAIN-SUFFIX,19882008.xyz,全球直连
   - DOMAIN-SUFFIX,dpdns.org,全球直连
   - DOMAIN-SUFFIX,cnb.cool,全球直连
@@ -294,8 +295,7 @@ rules:
   - RULE-SET,microsoft,默认代理
   - RULE-SET,bahamut,Bahamut
   - RULE-SET,cryptocurrency,加密货币
-  - RULE-SET,gfw,默认代理
+  - RULE-SET,geolocation-!cn,默认代理
   - RULE-SET,cn,全球直连
   - RULE-SET,cnip,全球直连
-  - RULE-SET,ip-detect,默认代理
   - MATCH,漏网之鱼
