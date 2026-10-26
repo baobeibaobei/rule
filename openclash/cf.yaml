@@ -188,6 +188,7 @@ rule-providers:
   custom_direct: { <<: *base-ruleset-dn-text, url: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/Custom_Direct.list }
   fakeip-filter: { <<: *base-ruleset-dn-text, url: https://raw.githubusercontent.com/baobeibaobei/rule/main/openclash/fakeip-filter.list }
   private: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs }
+  privateip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs }
   tailscale: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tailscale.mrs }
   synology: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/synology.mrs }
   public-tracker: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-public-tracker.mrs }
@@ -203,7 +204,9 @@ rule-providers:
   speedtest: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs }
   cloudflare: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs }
   telegram: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs }
+  telegramip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs }
   netflix: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs }
+  netflixip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs }
   disney: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/disney.mrs }
   hbo: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/hbo.mrs }
   primevideo: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/primevideo.mrs }
@@ -216,24 +219,20 @@ rule-providers:
   youtube: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs }
   googlefcm: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/googlefcm.mrs }
   google: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs }
+  googleip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs }
   docker: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/docker.mrs }
   github: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs }
   twitter: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.mrs }
+  twitterip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.mrs }
   microsoft: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs }
   bahamut: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bahamut.mrs }
   cryptocurrency: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-cryptocurrency.mrs }
   geolocation-cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-cn.mrs }
-  cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs }
   geolocation-!cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs }
   gfw: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs }
-  ip-detect: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ip-geo-detect.mrs }
-
-  privateip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs }
-  telegramip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs }
-  netflixip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs }
-  googleip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs }
-  twitterip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.mrs }
+  cn: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs }
   cnip: { <<: *base-ruleset-ip-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs }
+  ip-detect: { <<: *base-ruleset-dn-mrs, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ip-geo-detect.mrs }
 
 rules:
   - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
