@@ -10,7 +10,7 @@ https://gh-proxy.com/https://raw.githubusercontent.com/xream/scripts/main/surge/
 🕳ℹ️马来西亚节点🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(🇲🇾|MY|my|马来西亚|大马|Malaysia)
 🕳ℹ️新加坡节点🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(新加坡|坡|狮城|SG|Singapore)
 🕳ℹ️美国节点🏷ℹ️^(?!.*(?:ZJ|zijian|自建|AUS|RUS)).*(🇺🇸|US|us|美国|美|United States)
-🕳ℹ️加拿大节点🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(🇨🇦|CA|ca|加拿大|加|Canada)
+🕳ℹ️加拿大节点🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(🇨🇦|CA|ca|加拿大|Canada)
 🕳ℹ️英国节点🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(🇬🇧|GB|gb|英国|英|United Kingdom|UK)
 🕳ℹ️德国节点🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(🇩🇪|DE|de|德国|德|Germany)
 🕳ℹ️澳大利亚节点🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(🇦🇺|AU|au|澳大利亚|澳洲|Australia)
