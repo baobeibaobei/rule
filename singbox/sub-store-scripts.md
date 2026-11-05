@@ -24,7 +24,7 @@ https://gh-proxy.com/https://raw.githubusercontent.com/xream/scripts/main/surge/
 🕳ℹ️马来西亚自动🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(🇲🇾|MY|my|马来西亚|大马|Malaysia)
 🕳ℹ️新加坡自动🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(新加坡|坡|狮城|SG|Singapore)
 🕳ℹ️美国自动🏷ℹ️^(?!.*(?:ZJ|zijian|自建|AUS|RUS)).*(🇺🇸|US|us|美国|美|United States)
-🕳ℹ️加拿大自动🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(🇨🇦|CA|ca|加拿大|加|Canada)
+🕳ℹ️加拿大自动🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(🇨🇦|CA|ca|加拿大|Canada)
 🕳ℹ️英国自动🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(🇬🇧|GB|gb|英国|英|United Kingdom|UK)
 🕳ℹ️德国自动🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(🇩🇪|DE|de|德国|德|Germany)
 🕳ℹ️澳大利亚自动🏷ℹ️^(?!.*(?:ZJ|zijian|自建)).*(🇦🇺|AU|au|澳大利亚|澳洲|Australia)
